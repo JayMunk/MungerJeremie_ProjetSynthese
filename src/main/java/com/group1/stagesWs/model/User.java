@@ -12,6 +12,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String nom;
     @Column(unique = true)
     private String courriel;
     private String password;
@@ -20,7 +21,8 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String courriel, String password, String numTelephone) {
+    public User(String nom, String courriel, String password, String numTelephone) {
+        this.nom = nom;
         this.courriel = courriel;
         this.password = password;
         this.numTelephone = numTelephone;

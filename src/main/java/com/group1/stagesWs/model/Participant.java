@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Participant extends User implements Serializable{
+public class Participant extends User implements Serializable {
 
     private String nom;
     private LocalDate dateOfBirth;
@@ -20,8 +20,7 @@ public class Participant extends User implements Serializable{
     }
 
     public Participant(String courriel, String password, String nom, LocalDate dateOfBirth, String numTelephone) {
-        super(courriel, password, numTelephone);
-        this.nom = nom;
+        super(nom, courriel, password, numTelephone);
         this.dateOfBirth = dateOfBirth;
         this.gain = 0;
     }

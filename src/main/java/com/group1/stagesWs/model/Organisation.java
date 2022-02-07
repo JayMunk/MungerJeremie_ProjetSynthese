@@ -9,14 +9,11 @@ import java.io.Serializable;
 @Entity
 public class Organisation extends User implements Serializable {
 
-    private String nom;
-
     public Organisation() {
 
     }
 
     public Organisation(String courriel, String password, String nom, String numTelephone) {
-        super(courriel, password, numTelephone);
-        this.nom = nom;
+        super(nom, courriel, password, numTelephone);
     }
 }
