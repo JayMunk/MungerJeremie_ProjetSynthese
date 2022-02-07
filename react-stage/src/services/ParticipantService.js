@@ -11,9 +11,6 @@ const ParticipantService = {
                 body: JSON.stringify(values)
             })
         const data = await res.json()
-        if (!res.ok) {
-            errorAlert("Il y a un problème, veuillez réessayer plus tard.")
-        }
         return data
     }
 }
