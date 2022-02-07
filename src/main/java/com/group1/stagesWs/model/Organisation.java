@@ -7,8 +7,16 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class Organisation extends User implements Serializable{
+public class Organisation extends User implements Serializable {
 
     private String nom;
 
+    public Organisation() {
+
+    }
+
+    public Organisation(String courriel, String password, String nom) {
+        super(courriel, password);
+        this.nom = nom;
+    }
 }
