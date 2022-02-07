@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import ComputerService from "../../services/ComputerService.js"
 import { UserInfoContext } from '../../contexts/UserInfo';
-import PanierService from '../../services/PanierService';
 import './Home.css'
 
 const Home = () => {

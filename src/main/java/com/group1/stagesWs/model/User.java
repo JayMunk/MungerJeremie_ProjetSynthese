@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@MappedSuperclass
 @Data
-@Entity
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

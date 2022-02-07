@@ -4,13 +4,14 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @Entity
 public class Participant extends User implements Serializable{
 
     private String nom;
-    private String age;
+    private LocalDate dateOfBirth;
     private int gain;
 
 
@@ -18,10 +19,10 @@ public class Participant extends User implements Serializable{
 
     }
 
-    public Participant(String courriel, String password, String nom, String age) {
+    public Participant(String courriel, String password, String nom, LocalDate dateOfBirth) {
         super(courriel, password);
         this.nom = nom;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.gain = 0;
     }
 }
