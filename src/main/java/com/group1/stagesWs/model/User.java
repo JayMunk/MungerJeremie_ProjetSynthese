@@ -15,12 +15,14 @@ public class User implements Serializable {
     @Column(unique = true)
     private String courriel;
     private String password;
+    private String numTelephone;
 
     public User() {
     }
 
-    public User(String courriel, String password) {
+    public User(String courriel, String password, String numTelephone) {
         this.courriel = courriel;
         this.password = password;
+        this.numTelephone = numTelephone;
     }
 }

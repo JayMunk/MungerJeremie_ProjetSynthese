@@ -19,8 +19,8 @@ public class Participant extends User implements Serializable{
 
     }
 
-    public Participant(String courriel, String password, String nom, LocalDate dateOfBirth) {
-        super(courriel, password);
+    public Participant(String courriel, String password, String nom, LocalDate dateOfBirth, String numTelephone) {
+        super(courriel, password, numTelephone);
         this.nom = nom;
         this.dateOfBirth = dateOfBirth;
         this.gain = 0;

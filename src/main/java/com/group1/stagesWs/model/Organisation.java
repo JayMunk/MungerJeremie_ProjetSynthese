@@ -15,8 +15,8 @@ public class Organisation extends User implements Serializable {
 
     }
 
-    public Organisation(String courriel, String password, String nom) {
-        super(courriel, password);
+    public Organisation(String courriel, String password, String nom, String numTelephone) {
+        super(courriel, password, numTelephone);
         this.nom = nom;
     }
 }
