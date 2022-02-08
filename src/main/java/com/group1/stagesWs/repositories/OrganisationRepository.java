@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrganisationRepository  extends JpaRepository<Organisation, Integer> {
+
+    Organisation findOrganisationByCourrielIgnoreCase(String courriel);
+
+    Organisation findOrganisationByCourrielIgnoreCaseAndPassword(String email, String pwd);
 }
