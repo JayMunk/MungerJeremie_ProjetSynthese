@@ -33,7 +33,7 @@ public class StageswsApplication implements CommandLineRunner {
         Organisation org = new Organisation("ccra@gmail.com", "Password1", "CCRA", "450-124-6891");
         organisationRepository.save(org);
 
-        Participant parti = new Participant("jeremie@gmail.com", "Password1", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
+        Participant parti = new Participant("jeremie@gmail.com", "Password1","Munger", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
         participantRepository.save(parti);
     }
 }

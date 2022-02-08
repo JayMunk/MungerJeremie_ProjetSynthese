@@ -6,7 +6,8 @@ import React from 'react'
 
 const user = {
     courriel: "",
-    role: "",
+    nom: "",
+    prenom: "",
     isLoggedIn: "",
 }
 const UserInfo = ({children}) =>{

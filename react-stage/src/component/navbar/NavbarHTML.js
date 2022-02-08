@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom';
 import { UserInfoContext } from '../../contexts/UserInfo';
 
 
-
-
-
-
 const NavbarHTML = () => {
   const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
+
+  console.log(loggedUser,"loggedUser")
 
 
   return (
@@ -21,26 +19,14 @@ const NavbarHTML = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link as={Link} to="/login">Login</Nav.Link>
-          {loggedUser.role == "admin" && loggedUser.isLoggedIn ?
+          {!loggedUser.isLoggedIn ?
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            :
+            null
+          }
 
-            <Nav.Link as={Link} to="/addComputer">Add Computer</Nav.Link>
-            :
-            null
-          }
-          {loggedUser.role == "admin" && loggedUser.isLoggedIn ?
-
-            <Nav.Link as={Link} to="/deleteComputer">Delete Computer</Nav.Link>
-            :
-            null
-          }
-          {loggedUser.role == "admin" && loggedUser.isLoggedIn ?
-            <Nav.Link as={Link} to="/inventoryComputer">Inventory Computer</Nav.Link>
-            :
-            null
-          }
           {loggedUser.isLoggedIn ?
-            <Nav.Link as={Link} to="/panier">Panier</Nav.Link>
+            <p>{loggedUser.prenom} {loggedUser.nom}</p>
             :
             null
           }
