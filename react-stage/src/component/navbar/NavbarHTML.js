@@ -10,7 +10,7 @@ import { UserInfoContext } from '../../contexts/UserInfo';
 const NavbarHTML = () => {
   const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
 
-  console.log(loggedUser,"loggedUser")
+  console.log(loggedUser, "loggedUser")
 
 
   return (
@@ -26,7 +26,13 @@ const NavbarHTML = () => {
           }
 
           {loggedUser.isLoggedIn ?
-            <p>{loggedUser.prenom} {loggedUser.nom}</p>
+            <p id="navbarNom">{loggedUser.prenom} {loggedUser.nom}</p>
+            :
+            null
+          }
+
+          {loggedUser.isLoggedIn ?
+            <Nav.Link className="logout" href="/">Déconnexion</Nav.Link>
             :
             null
           }

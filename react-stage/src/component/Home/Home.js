@@ -20,8 +20,8 @@ const Home = () => {
                 :
                 null
             }
-            <h2>Évènement cette semaine</h2>
-            <h2>Évènement ce mois ci</h2>
+            <h2>Évènements cette semaine</h2>
+            <h2>Évènements ce mois ci</h2>
         </div>
     )
 }
