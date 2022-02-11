@@ -15,7 +15,7 @@ public class ParticipantService {
         this.participantRepository = participantRepository;
     }
 
-    public Optional<Participant> addParticipant(Participant participant) {
+    public Optional<Participant> createParticipant(Participant participant) {
         return Optional.of(participantRepository.save(participant));
     }
 }

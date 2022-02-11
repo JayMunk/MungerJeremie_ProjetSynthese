@@ -25,7 +25,7 @@ public class ParticipantController {
     public ResponseEntity<Participant> createEtudiant(@RequestBody Participant participant) {
         logger.info("post - createParticipant " + participant);
         return participantService
-                .addParticipant(participant)
+                .createParticipant(participant)
                 .map(participant1 -> ResponseEntity.status(HttpStatus.CREATED).body(participant1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }

@@ -14,7 +14,7 @@ public class OrganisationService {
         this.organisationRepository = organisationRepository;
     }
 
-    public Optional<Organisation> addOrganisation(Organisation organisation) {
+    public Optional<Organisation> createOrganisation(Organisation organisation) {
         return Optional.of(organisationRepository.save(organisation));
     }
 }

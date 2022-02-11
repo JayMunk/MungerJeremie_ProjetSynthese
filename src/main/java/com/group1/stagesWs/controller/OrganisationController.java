@@ -25,7 +25,7 @@ public class OrganisationController {
     public ResponseEntity<Organisation> createEtudiant(@RequestBody Organisation organisation) {
         logger.info("post - createOrganisation " + organisation);
         return organisationService
-                .addOrganisation(organisation)
+                .createOrganisation(organisation)
                 .map(organisation1 -> ResponseEntity.status(HttpStatus.CREATED).body(organisation1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
