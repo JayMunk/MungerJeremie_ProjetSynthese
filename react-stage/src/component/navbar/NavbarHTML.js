@@ -26,6 +26,12 @@ const NavbarHTML = () => {
           }
 
           {loggedUser.isLoggedIn ?
+            <Nav.Link as={Link} to="/createcheval">Ajouter cheval</Nav.Link>
+            :
+            null
+          }
+
+          {loggedUser.isLoggedIn ?
             <p id="navbarNom">{loggedUser.prenom} {loggedUser.nom}</p>
             :
             null

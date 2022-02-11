@@ -2,10 +2,7 @@ package com.group1.stagesWs.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -20,18 +17,23 @@ public class Cheval implements Serializable {
     private String sexe;
     private boolean vaccinated;
     private boolean coggingTested;
-    private int AQHANumber;
+    private String AQHANumber;
     private LocalDate dateOfBirth;
     private String fatherName;
     private String motherName;
-    private String origine;
+    private String origineCountry;
+    private String origineState;
+    private int gain;
+
+    @ManyToOne
+    private Participant owner;
 
 
     public Cheval() {
 
     }
 
-    public Cheval(String nom, String sexe, boolean vaccinated, boolean coggingTested, int AQHANumber, LocalDate dateOfBirth, String fatherName, String motherName, String origine) {
+    public Cheval(String nom, String sexe, boolean vaccinated, boolean coggingTested, String AQHANumber, LocalDate dateOfBirth, String fatherName, String motherName, String origineCountry, String origineState) {
         this.nom = nom;
         this.sexe = sexe;
         this.vaccinated = vaccinated;
@@ -40,6 +42,8 @@ public class Cheval implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.fatherName = fatherName;
         this.motherName = motherName;
-        this.origine = origine;
+        this.origineCountry = origineCountry;
+        this.origineState = origineState;
+        this.gain = 0;
     }
 }

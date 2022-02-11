@@ -14,7 +14,6 @@ public class Participant extends User implements Serializable {
     private LocalDate dateOfBirth;
     private int gain;
 
-
     public Participant() {
 
     }
