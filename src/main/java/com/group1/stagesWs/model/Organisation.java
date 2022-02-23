@@ -1,5 +1,6 @@
 package com.group1.stagesWs.model;
 
+import com.group1.stagesWs.enums.UserType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -10,10 +11,9 @@ import java.io.Serializable;
 public class Organisation extends User implements Serializable {
 
     public Organisation() {
-
     }
 
     public Organisation(String courriel, String password, String nom, String numTelephone) {
-        super(nom, courriel, password, numTelephone);
+        super(nom, courriel, password, numTelephone, UserType.ORGANISATION);
     }
 }
