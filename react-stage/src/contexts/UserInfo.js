@@ -9,6 +9,7 @@ const user = {
     nom: "",
     prenom: "",
     isLoggedIn: "",
+    role: ""
 }
 const UserInfo = ({children}) =>{
     const [loggedUser, setLoggedUser] = useState(user)
