@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParticipantRepository extends JpaRepository<Participant, Integer> {
-    
+
     Participant findParticipantByCourrielIgnoreCase(String email);
 
     Participant findParticipanByCourrielIgnoreCaseAndPassword(String email, String pwd);

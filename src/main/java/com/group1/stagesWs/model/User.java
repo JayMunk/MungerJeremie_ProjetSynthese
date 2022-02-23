@@ -1,5 +1,6 @@
 package com.group1.stagesWs.model;
 
+import com.group1.stagesWs.enums.UserType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,14 +18,16 @@ public class User implements Serializable {
     private String courriel;
     private String password;
     private String numTelephone;
+    private UserType role;
 
     public User() {
     }
 
-    public User(String nom, String courriel, String password, String numTelephone) {
+    public User(String nom, String courriel, String password, String numTelephone, UserType role) {
         this.nom = nom;
         this.courriel = courriel;
         this.password = password;
         this.numTelephone = numTelephone;
+        this.role = role;
     }
 }

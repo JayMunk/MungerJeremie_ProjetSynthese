@@ -1,5 +1,6 @@
 package com.group1.stagesWs.model;
 
+import com.group1.stagesWs.enums.UserType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class Participant extends User implements Serializable {
     }
 
     public Participant(String courriel, String password, String nom, String prenom, LocalDate dateOfBirth, String numTelephone) {
-        super(nom, courriel, password, numTelephone);
+        super(nom, courriel, password, numTelephone, UserType.PARTICIPANT);
         this.prenom = prenom;
         this.dateOfBirth = dateOfBirth;
         this.gain = 0;

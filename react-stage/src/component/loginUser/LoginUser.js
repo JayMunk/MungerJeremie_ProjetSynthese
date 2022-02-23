@@ -78,13 +78,14 @@ const LoginUser = () => {
                     .then(data => {
 
                         if (loginValid.current) {
-                            console.log(data,"data")
+                            console.log(data, "data")
 
                             setLoggedUser({
                                 courriel: data.courriel,
                                 nom: data.nom,
                                 prenom: data.prenom,
-                                isLoggedIn: true
+                                isLoggedIn: true,
+                                role: data.role
                             })
                             history.push("/");
                         }
