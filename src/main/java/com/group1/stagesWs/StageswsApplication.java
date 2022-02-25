@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -40,8 +41,12 @@ public class StageswsApplication implements CommandLineRunner {
         Participant parti = new Participant("jeremie@gmail.com", "Password1", "Munger", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
         participantRepository.save(parti);
 
-        Competition competition1 = new Competition("Open de Saint-Jean","123 rue principal Saint-Jean",LocalDate.of(2022, 8, 8));
+        Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.of(2022, 2, 25));
         competition1.setOrganisation(org);
-        competitionRepository.save(competition1);
+        Competition competition2 = new Competition("Open de Saint-Luc", "123 rue principal Saint-Luc", LocalDate.of(2022, 3, 4));
+        competition2.setOrganisation(org);
+        Competition competition3 = new Competition("Open de Saint-Alfa", "123 rue principal Saint-Alfa", LocalDate.of(2022, 3, 25));
+        competition3.setOrganisation(org);
+        competitionRepository.saveAll(List.of(competition1, competition2, competition3));
     }
 }

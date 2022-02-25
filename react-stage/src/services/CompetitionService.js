@@ -19,6 +19,20 @@ const CompetitionService = {
         const res = await fetch(urlBase + "/competitions/" + organisationCourriel)
         const data = await res.json()
         return data
+    },
+
+    getCompetitionsByDateWeek: async (dateDebut) => {
+        const res = await fetch(urlBase + "/competitionsByDateWeek/" + dateDebut)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
+    },
+
+    getCompetitionsByDateMonth: async (dateDebut) => {
+        const res = await fetch(urlBase + "/competitionsByDateWeek/" + dateDebut)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
     }
 }
 export default CompetitionService

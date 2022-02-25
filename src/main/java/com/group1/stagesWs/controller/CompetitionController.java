@@ -8,12 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/competition")
 public class CompetitionController {
+
+    private static final String DATE_FORMAT_INPUT = "yyyy-MM-dd";
 
     Logger logger = LoggerFactory.getLogger(CompetitionController.class);
 
@@ -35,5 +38,21 @@ public class CompetitionController {
     @GetMapping("/competitions/{courriel}")
     public ResponseEntity<List<Competition>> getCompetitionsByOrganisationEmail(@PathVariable("courriel") String organisationEmail) {
         return ResponseEntity.ok(competitionService.getCompetitionsByOrganisationEmail(organisationEmail));
+    }
+
+    @GetMapping("/competitionsByDateWeek/{dateDebut}")
+    public ResponseEntity<List<Competition>> competitionsByDateWeek(@PathVariable("dateDebut") String dateDebutString) {
+        logger.info("get - getCompetitionsByDates " + dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateFin = dateDebut.plusDays(7);
+        return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
+    }
+
+    @GetMapping("/competitionsByDateMonth/{dateDebut}")
+    public ResponseEntity<List<Competition>> competitionsByDateMonth(@PathVariable("dateDebut") String dateDebutString) {
+        logger.info("get - getCompetitionsByDates " + dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateFin = dateDebut.plusMonths(1);
+        return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
     }
 }

@@ -6,6 +6,7 @@ import com.group1.stagesWs.repositories.CompetitionRepository;
 import com.group1.stagesWs.repositories.OrganisationRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +29,9 @@ public class CompetitionService {
 
     public List<Competition> getCompetitionsByOrganisationEmail(String organisationEmail) {
         return competitionRepository.findAllByOrganisationCourrielIgnoreCase(organisationEmail);
+    }
+
+    public List<Competition> getCompetitionsByDate(LocalDate dateDebut, LocalDate dateFin) {
+        return competitionRepository.findByDateBetween(dateDebut, dateFin);
     }
 }

@@ -40,7 +40,7 @@ const NavbarHTML = () => {
 
           {
             loggedUser.isLoggedIn && loggedUser.role === "ORGANISATION" ?
-              <Nav.Link as={Link} to="/afficherCompetition">Mes compétitions</Nav.Link>
+              <Nav.Link as={Link} to="/afficherCompetitionOrganisation">Mes compétitions</Nav.Link>
               :
               null
           }

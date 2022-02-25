@@ -5,22 +5,25 @@ import { UserInfoContext } from '../../../contexts/UserInfo'
 import Table from "react-bootstrap/Table"
 import { Link } from 'react-router-dom'
 
-const AfficherCompetition = (props) => {
+const AfficherCompetitionThisWeek = () => {
     const history = useHistory();
     const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
 
     useEffect(() => {
         const getCompetitions = async () => {
-            let dbCompetitions = await CompetitionService.getOrganisationCompetitions(loggedUser.courriel)
+            var today = new Date()
+            var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + today.getDate()
+            console.log(dateDebut, "date")
+            let dbCompetitions = await CompetitionService.getCompetitionsByDateWeek(dateDebut)
             console.log(dbCompetitions, "dbCompetitions")
             setListCompetitions(dbCompetitions)
         }
         getCompetitions()
     }, [])
 
-    const voirCreerClasse = (competition) => {
-        this.props.history.push({ pathname: "/voirClasses",  state:competition });
+    const inscrire = (competition) => {
+        //this.props.history.push({ pathname: "/voirClasses",  state:competition });
         //props.history.push({ pathname: '/details', state });
     }
 
@@ -29,7 +32,7 @@ const AfficherCompetition = (props) => {
             <td>{competition.nom}</td>
             <td>{competition.date}</td>
             <td>{competition.adresse}</td>
-            <td><button onClick={() => voirCreerClasse(competition)} >Voir/créer classe</button></td>
+            <td><button onClick={() => inscrire(competition)} >s'inscrire</button></td>
         </tr>)
 
     return (
@@ -37,25 +40,24 @@ const AfficherCompetition = (props) => {
             <div>
                 {listCompetitions.length > 0 ?
                     <div>
-                        <h2>Mes compétitions</h2>
                         <Table striped bordered hover variant="dark" id="tableCv">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
                                     <th>Date</th>
                                     <th>Addresse</th>
-                                    <th>Voir/créer classes</th>
+                                    <th>Inscription</th>
                                 </tr>
                             </thead>
                             <tbody>{competitionList}</tbody>
                         </Table>
                     </div>
                     :
-                    <h5 style={{ textAlign: "center", color: "yellow" }}>Créer une compétition <Link to="/createCompetition" style={{ color: "white", textDecoration: "underline" }}>ici</Link></h5>
+                    <h5>Aucune compétition au courant des 7 prochains jours</h5>
                 }
             </div>
         </body>
     )
 }
 
-export default AfficherCompetition
+export default AfficherCompetitionThisWeek
