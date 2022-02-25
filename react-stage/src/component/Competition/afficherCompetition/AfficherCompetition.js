@@ -1,11 +1,12 @@
 import { React, useState, useContext, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useHistory, withRouter } from "react-router-dom"
 import CompetitionService from '../../../services/CompetitionService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
 import Table from "react-bootstrap/Table"
 import { Link } from 'react-router-dom'
 
-const AfficherCompetition = () => {
+const AfficherCompetition = (props) => {
+    const history = useHistory();
     const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
 
@@ -18,11 +19,17 @@ const AfficherCompetition = () => {
         getCompetitions()
     }, [])
 
+    const voirCreerClasse = (competition) => {
+        this.props.history.push({ pathname: "/voirClasses",  state:competition });
+        //props.history.push({ pathname: '/details', state });
+    }
+
     const competitionList = listCompetitions.map((competition) =>
         <tr key={competition.id.toString()}>
             <td>{competition.nom}</td>
             <td>{competition.date}</td>
             <td>{competition.adresse}</td>
+            <td><button onClick={() => voirCreerClasse(competition)} >Voir/créer classe</button></td>
         </tr>)
 
     return (
@@ -37,6 +44,7 @@ const AfficherCompetition = () => {
                                     <th>Nom</th>
                                     <th>Date</th>
                                     <th>Addresse</th>
+                                    <th>Voir/créer classes</th>
                                 </tr>
                             </thead>
                             <tbody>{competitionList}</tbody>
