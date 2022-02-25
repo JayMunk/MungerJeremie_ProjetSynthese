@@ -3,6 +3,7 @@ package com.group1.stagesWs.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -13,7 +14,9 @@ public class Competition implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     private String nom;
+    private String adresse;
     @ManyToOne
     private Organisation organisation;
     private LocalDate date;
@@ -27,7 +30,9 @@ public class Competition implements Serializable {
     public Competition() {
     }
 
-    public Competition(LocalDate date) {
+    public Competition(String nom, String adresse, LocalDate date) {
+        this.nom = nom;
+        this.adresse = adresse;
         this.date = date;
     }
 }

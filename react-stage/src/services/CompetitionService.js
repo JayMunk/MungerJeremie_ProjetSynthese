@@ -2,7 +2,7 @@ const urlBase = 'http://localhost:9191/competition'
 
 const CompetitionService = {
     saveCompetition: async (values, courriel) => {
-        const res = await fetch(urlBase +'/' + courriel,
+        const res = await fetch(urlBase + '/' + courriel,
             {
                 method: 'POST',
                 headers: {
@@ -11,7 +11,13 @@ const CompetitionService = {
                 body: JSON.stringify(values)
             })
         const data = await res.json()
-        console.log(data,"data")
+        console.log(data, "data")
+        return data
+    },
+
+    getOrganisationCompetitions: async (organisationCourriel) => {
+        const res = await fetch(urlBase + "/competitions/" + organisationCourriel)
+        const data = await res.json()
         return data
     }
 }

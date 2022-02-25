@@ -6,6 +6,7 @@ import com.group1.stagesWs.repositories.CompetitionRepository;
 import com.group1.stagesWs.repositories.OrganisationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +24,9 @@ public class CompetitionService {
         Organisation organisation = organisationRepository.findOrganisationByCourrielIgnoreCase(courriel);
         competition.setOrganisation(organisation);
         return Optional.of(competitionRepository.save(competition));
+    }
+
+    public List<Competition> getCompetitionsByOrganisationEmail(String organisationEmail) {
+        return competitionRepository.findAllByOrganisationCourrielIgnoreCase(organisationEmail);
     }
 }
