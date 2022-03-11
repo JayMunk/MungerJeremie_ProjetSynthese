@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import java.time.Duration;
 
 @Data
 @Entity
@@ -14,7 +13,8 @@ public class AllerRetour extends Classe implements Serializable {
 
     }
 
-    public AllerRetour(int nbDeDivision, int argentAjouter, Duration penaliter) {
+    public AllerRetour(int nbDeDivision, int argentAjouter, Double penaliter) {
         super(nbDeDivision, argentAjouter, penaliter);
+        this.setNom("Aller retour");
     }
 }

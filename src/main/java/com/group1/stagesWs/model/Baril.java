@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import java.time.Duration;
 
 @Data
 @Entity
@@ -12,7 +11,8 @@ public class Baril extends Classe implements Serializable {
     public Baril() {
     }
 
-    public Baril(int nbDeDivision, int argentAjouter, Duration penaliter) {
+    public Baril(int nbDeDivision, int argentAjouter, Double penaliter) {
         super(nbDeDivision, argentAjouter, penaliter);
+        this.setNom("Course de Barils");
     }
 }

@@ -1,11 +1,7 @@
 package com.group1.stagesWs;
 
-import com.group1.stagesWs.model.Competition;
-import com.group1.stagesWs.model.Organisation;
-import com.group1.stagesWs.model.Participant;
-import com.group1.stagesWs.repositories.CompetitionRepository;
-import com.group1.stagesWs.repositories.OrganisationRepository;
-import com.group1.stagesWs.repositories.ParticipantRepository;
+import com.group1.stagesWs.model.*;
+import com.group1.stagesWs.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,11 +16,17 @@ public class StageswsApplication implements CommandLineRunner {
     private final OrganisationRepository organisationRepository;
     private final ParticipantRepository participantRepository;
     private final CompetitionRepository competitionRepository;
+    private final BarilRepository barilRepository;
+    private final AllerRetourRepository allerRetourRepository;
+    private final TourRepository tourRepository;
 
-    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository) {
+    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository) {
         this.organisationRepository = organisationRepository;
         this.participantRepository = participantRepository;
         this.competitionRepository = competitionRepository;
+        this.barilRepository = barilRepository;
+        this.allerRetourRepository = allerRetourRepository;
+        this.tourRepository = tourRepository;
     }
 
 
@@ -41,12 +43,25 @@ public class StageswsApplication implements CommandLineRunner {
         Participant parti = new Participant("jeremie@gmail.com", "Password1", "Munger", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
         participantRepository.save(parti);
 
-        Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.of(2022, 2, 25));
+        Baril baril1 = new Baril(3, 3000, 5.0);
+        barilRepository.save(baril1);
+
+        Tour tour1 = new Tour(2, 2500, 5.0);
+        tourRepository.save(tour1);
+
+        AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
+        allerRetourRepository.save(allerRetour1);
+
+        Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());
         competition1.setOrganisation(org);
-        Competition competition2 = new Competition("Open de Saint-Luc", "123 rue principal Saint-Luc", LocalDate.of(2022, 3, 4));
+        competition1.setBaril(baril1);
+        competition1.setTour(tour1);
+        competition1.setAllerRetour(allerRetour1);
+        Competition competition2 = new Competition("Open de Saint-Luc", "123 rue principal Saint-Luc", LocalDate.now().plusDays(7));
         competition2.setOrganisation(org);
-        Competition competition3 = new Competition("Open de Saint-Alfa", "123 rue principal Saint-Alfa", LocalDate.of(2022, 3, 25));
+        Competition competition3 = new Competition("Open de Saint-Alfa", "123 rue principal Saint-Alfa", LocalDate.now().plusDays(20));
         competition3.setOrganisation(org);
         competitionRepository.saveAll(List.of(competition1, competition2, competition3));
+
     }
 }

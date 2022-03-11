@@ -29,7 +29,7 @@ const CompetitionService = {
     },
 
     getCompetitionsByDateMonth: async (dateDebut) => {
-        const res = await fetch(urlBase + "/competitionsByDateWeek/" + dateDebut)
+        const res = await fetch(urlBase + "/competitionsByDateMonth/" + dateDebut)
         const data = await res.json()
         console.log(data, "data")
         return data

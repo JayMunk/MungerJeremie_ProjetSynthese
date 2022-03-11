@@ -2,7 +2,6 @@ package com.group1.stagesWs.controller;
 
 import com.group1.stagesWs.model.AllerRetour;
 import com.group1.stagesWs.model.Baril;
-import com.group1.stagesWs.model.Classe;
 import com.group1.stagesWs.model.Tour;
 import com.group1.stagesWs.service.ClasseService;
 import org.slf4j.Logger;
@@ -24,16 +23,16 @@ public class ClasseController {
         this.classeService = classeService;
     }
 
-    @PostMapping(path = "/AllerRetour")
-    public ResponseEntity<AllerRetour> createAllerRetourClasse(@RequestBody Classe classe) {
-        logger.info("post - createAllerRetourClasse " + classe);
-        return classeService.createAllerRetourClasse(classe)
+    @PostMapping(path = "/AllerRetour/{competitionId}")
+    public ResponseEntity<AllerRetour> createAllerRetourClasse(@RequestBody AllerRetour classe, @PathVariable("competitionId") int competitionId) {
+        logger.info("post - createAllerRetourClasse " + classe + "|| id " + competitionId);
+        return classeService.createAllerRetourClasse(classe, competitionId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
 
     @PostMapping(path = "/Baril")
-    public ResponseEntity<Baril> createBarilClasse(@RequestBody Classe classe) {
+    public ResponseEntity<Baril> createBarilClasse(@RequestBody Baril classe) {
         logger.info("post - createBarilClasse " + classe);
         return classeService.createBarilClasse(classe)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
@@ -41,7 +40,7 @@ public class ClasseController {
     }
 
     @PostMapping(path = "/Tour")
-    public ResponseEntity<Tour> createTourClasse(@RequestBody Classe classe) {
+    public ResponseEntity<Tour> createTourClasse(@RequestBody Tour classe) {
         logger.info("post - createTourClasse " + classe);
         return classeService.createTourClasse(classe)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))

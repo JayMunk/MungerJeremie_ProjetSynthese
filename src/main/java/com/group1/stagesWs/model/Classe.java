@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Duration;
 import java.util.List;
 
 @MappedSuperclass
@@ -17,7 +16,7 @@ public class Classe implements Serializable {
     private String nom;
     private int nbDeDivision;
     private int argentAjouter;
-    private Duration penaliter;
+    private Double penaliter;
 
     @OneToMany
 
@@ -31,7 +30,7 @@ public class Classe implements Serializable {
     public Classe() {
     }
 
-    public Classe(int nbDeDivision, int argentAjouter, Duration penaliter) {
+    public Classe(int nbDeDivision, int argentAjouter, Double penaliter) {
         this.nbDeDivision = nbDeDivision;
         this.argentAjouter = argentAjouter;
         this.penaliter = penaliter;

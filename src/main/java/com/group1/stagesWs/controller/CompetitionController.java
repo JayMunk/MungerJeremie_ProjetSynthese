@@ -16,8 +16,6 @@ import java.util.List;
 @RequestMapping("/competition")
 public class CompetitionController {
 
-    private static final String DATE_FORMAT_INPUT = "yyyy-MM-dd";
-
     Logger logger = LoggerFactory.getLogger(CompetitionController.class);
 
     private final CompetitionService competitionService;
@@ -42,7 +40,7 @@ public class CompetitionController {
 
     @GetMapping("/competitionsByDateWeek/{dateDebut}")
     public ResponseEntity<List<Competition>> competitionsByDateWeek(@PathVariable("dateDebut") String dateDebutString) {
-        logger.info("get - getCompetitionsByDates " + dateDebutString);
+        logger.info("get - getCompetitionsByDateWeek " + dateDebutString);
         LocalDate dateDebut = LocalDate.parse(dateDebutString);
         LocalDate dateFin = dateDebut.plusDays(7);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
@@ -50,7 +48,7 @@ public class CompetitionController {
 
     @GetMapping("/competitionsByDateMonth/{dateDebut}")
     public ResponseEntity<List<Competition>> competitionsByDateMonth(@PathVariable("dateDebut") String dateDebutString) {
-        logger.info("get - getCompetitionsByDates " + dateDebutString);
+        logger.info("get - getCompetitionsByDateMonth " + dateDebutString);
         LocalDate dateDebut = LocalDate.parse(dateDebutString);
         LocalDate dateFin = dateDebut.plusMonths(1);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
