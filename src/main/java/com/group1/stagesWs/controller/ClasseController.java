@@ -31,18 +31,18 @@ public class ClasseController {
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
 
-    @PostMapping(path = "/Baril")
-    public ResponseEntity<Baril> createBarilClasse(@RequestBody Baril classe) {
-        logger.info("post - createBarilClasse " + classe);
-        return classeService.createBarilClasse(classe)
+    @PostMapping(path = "/Baril/{competitionId}")
+    public ResponseEntity<Baril> createBarilClasse(@RequestBody Baril classe, @PathVariable("competitionId") int competitionId) {
+        logger.info("post - createBarilClasse " + classe + "|| id " + competitionId);
+        return classeService.createBarilClasse(classe, competitionId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
 
-    @PostMapping(path = "/Tour")
-    public ResponseEntity<Tour> createTourClasse(@RequestBody Tour classe) {
-        logger.info("post - createTourClasse " + classe);
-        return classeService.createTourClasse(classe)
+    @PostMapping(path = "/Tour/{competitionId}")
+    public ResponseEntity<Tour> createTourClasse(@RequestBody Tour classe, @PathVariable("competitionId") int competitionId) {
+        logger.info("post - createTourClasse " + classe + "|| id " + competitionId);
+        return classeService.createTourClasse(classe, competitionId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }

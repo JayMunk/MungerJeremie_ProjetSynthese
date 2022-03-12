@@ -36,13 +36,21 @@ public class ClasseService {
         return Optional.of(finalClasse);
     }
 
-    public Optional<Baril> createBarilClasse(Baril classe) {
+    public Optional<Baril> createBarilClasse(Baril classe, int competitionId) {
         classe.setNom("Course de Barils");
-        return Optional.of(barilRepository.save(classe));
+        Baril finalClasse = barilRepository.save(classe);
+        Competition competition = competitionRepository.getById(competitionId);
+        competition.setBaril(finalClasse);
+        competitionRepository.save(competition);
+        return Optional.of(finalClasse);
     }
 
-    public Optional<Tour> createTourClasse(Tour classe) {
+    public Optional<Tour> createTourClasse(Tour classe, int competitionId) {
         classe.setNom("Tour de ring");
-        return Optional.of(tourRepository.save(classe));
+        Tour finalClasse = tourRepository.save(classe);
+        Competition competition = competitionRepository.getById(competitionId);
+        competition.setTour(finalClasse);
+        competitionRepository.save(competition);
+        return Optional.of(finalClasse);
     }
 }

@@ -92,6 +92,10 @@ const AfficherCompetitionOrganisation = () => {
 
             if (classeType == "AllerRetour") {
                 await ClasseService.saveAllerRetour(values, currentCompetitionId)
+            } else if (classeType == "Baril") {
+                await ClasseService.saveBaril(values, currentCompetitionId)
+            } else if (classeType == "Tour") {
+                await ClasseService.saveTour(values, currentCompetitionId)
             }
             getCompetitions()
             resetValues()
