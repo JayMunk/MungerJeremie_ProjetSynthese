@@ -13,6 +13,12 @@ const ChevalService = {
         const data = await res.json()
         console.log(data,"data")
         return data
+    },
+    
+    getHorsesByOwnerEmail: async (ownerCourriel) => {
+        const res = await fetch(urlBase + "/horses/" + ownerCourriel)
+        const data = await res.json()
+        return data
     }
 }
 export default ChevalService

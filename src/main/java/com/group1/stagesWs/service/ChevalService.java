@@ -6,6 +6,7 @@ import com.group1.stagesWs.repositories.ChevalRepository;
 import com.group1.stagesWs.repositories.ParticipantRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +24,9 @@ public class ChevalService {
         Participant participant = participantRepository.findParticipantByCourrielIgnoreCase(courriel);
         cheval.setOwner(participant);
         return Optional.of(chevalRepository.save(cheval));
+    }
+
+    public List<Cheval> getHorsesByOwnerEmail(String courriel) {
+        return chevalRepository.findAllByOwnerCourriel(courriel);
     }
 }

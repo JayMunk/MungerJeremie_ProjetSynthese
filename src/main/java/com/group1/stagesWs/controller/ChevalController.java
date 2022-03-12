@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/cheval")
@@ -28,5 +30,10 @@ public class ChevalController {
                 .createCheval(cheval, courriel)
                 .map(cheval1 -> ResponseEntity.status(HttpStatus.CREATED).body(cheval1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @GetMapping("/horses/{courriel}")
+    public ResponseEntity<List<Cheval>> getHorsesByOwnerEmail(@PathVariable("courriel") String courriel) {
+        return ResponseEntity.ok(chevalService.getHorsesByOwnerEmail(courriel));
     }
 }

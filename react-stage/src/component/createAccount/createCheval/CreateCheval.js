@@ -1,7 +1,6 @@
 import { React, useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router-dom"
 import ChevalService from '../../../services/ChevalService'
-import ParticipantService from '../../../services/ParticipantService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const CreateCheval = () => {
@@ -12,7 +11,7 @@ const CreateCheval = () => {
         sexe: "",
         vaccinated: false,
         coggingTested: false,
-        AQHANumber: "",
+        aqhanumber: "",
         dateOfBirth: "",
         fatherName: "",
         motherName: "",
@@ -74,7 +73,7 @@ const CreateCheval = () => {
         setSubmitted(true)
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
 
-            let data = await ChevalService.saveCheval(values, loggedUser.courriel)
+            await ChevalService.saveCheval(values, loggedUser.courriel)
             history.push("/myHorses")
         }
     }
@@ -124,7 +123,7 @@ const CreateCheval = () => {
                 <label>
                     Numéro AQHA du Cheval:
                 </label>
-                <input id="AQHANumber" type="text" name="AQHANumber" value={values.AQHANumber} onChange={handleChange}></input>
+                <input id="aqhanumber" type="text" name="aqhanumber" value={values.aqhanumber} onChange={handleChange}></input>
 
                 <label>
                     Nom du père du Cheval:

@@ -31,6 +31,12 @@ const NavbarHTML = () => {
             null
           }
 
+          {loggedUser.isLoggedIn && loggedUser.role === "PARTICIPANT" ?
+            <Nav.Link as={Link} to="/myHorses">Mes chevaux</Nav.Link>
+            :
+            null
+          }
+
           {
             loggedUser.isLoggedIn && loggedUser.role === "ORGANISATION" ?
               <Nav.Link as={Link} to="/createCompetition">Créer compétition</Nav.Link>
