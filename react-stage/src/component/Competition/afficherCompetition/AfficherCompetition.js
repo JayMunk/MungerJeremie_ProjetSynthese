@@ -2,10 +2,13 @@ import { React, useState, useContext, useEffect } from 'react'
 import { useHistory, withRouter } from "react-router-dom"
 import CompetitionService from '../../../services/CompetitionService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
-import Table from "react-bootstrap/Table"
+import Table from 'react-bootstrap/Table'
 import { Link } from 'react-router-dom'
+import ReactModal from 'react-modal'
+import { AiOutlineClose } from 'react-icons/ai'
+import ChevalService from '../../../services/ChevalService'
 
-const AfficherCompetitionThisMonth = () => {
+const AfficherCompetition = () => {
     const history = useHistory()
     const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
@@ -15,17 +18,12 @@ const AfficherCompetitionThisMonth = () => {
             var today = new Date()
             var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + today.getDate()
             console.log(dateDebut, "date")
-            let dbCompetitions = await CompetitionService.getCompetitionsByDateMonth(dateDebut)
+            let dbCompetitions = await CompetitionService.getCompetitionsByDateYear(dateDebut)
             console.log(dbCompetitions, "dbCompetitions")
             setListCompetitions(dbCompetitions)
         }
         getCompetitions()
     }, [])
-
-    const inscrire = (competition) => {
-        //this.props.history.push({ pathname: "/voirClasses",  state:competition })
-        //props.history.push({ pathname: '/details', state })
-    }
 
     const competitionList = listCompetitions.map((competition) =>
         <tr key={competition.id.toString()}>
@@ -33,11 +31,11 @@ const AfficherCompetitionThisMonth = () => {
             <td>{competition.date}</td>
             <td>{competition.adresse}</td>
             <td>{competition.organisation.nom}</td>
-            <td><button onClick={() => inscrire(competition)} >s'inscrire</button></td>
         </tr>)
 
     return (
         <body id="body">
+            <h2>Compétitions</h2>
             <div>
                 {listCompetitions.length > 0 ?
                     <div>
@@ -47,19 +45,18 @@ const AfficherCompetitionThisMonth = () => {
                                     <th>Nom</th>
                                     <th>Date</th>
                                     <th>Addresse</th>
-                                    <th>Organisation</th> 
-                                    <th>Inscription</th>
+                                    <th>Organisation</th>
                                 </tr>
                             </thead>
                             <tbody>{competitionList}</tbody>
                         </Table>
                     </div>
                     :
-                    <h5> Aucune compétition au courant des 30 prochains jours</h5>
+                    <h5>Aucune compétition au courant des 7 prochains jours</h5>
                 }
             </div>
         </body>
     )
 }
 
-export default AfficherCompetitionThisMonth
+export default AfficherCompetition

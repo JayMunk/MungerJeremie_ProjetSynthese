@@ -32,6 +32,7 @@ const AfficherCompetitionThisWeek = () => {
             <td>{competition.nom}</td>
             <td>{competition.date}</td>
             <td>{competition.adresse}</td>
+            <td>{competition.organisation.nom}</td>
             <td><button onClick={() => inscrire(competition)} >s'inscrire</button></td>
         </tr>)
 
@@ -46,6 +47,7 @@ const AfficherCompetitionThisWeek = () => {
                                     <th>Nom</th>
                                     <th>Date</th>
                                     <th>Addresse</th>
+                                    <th>Organisation</th> 
                                     <th>Inscription</th>
                                 </tr>
                             </thead>

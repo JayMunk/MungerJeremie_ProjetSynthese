@@ -19,14 +19,16 @@ public class StageswsApplication implements CommandLineRunner {
     private final BarilRepository barilRepository;
     private final AllerRetourRepository allerRetourRepository;
     private final TourRepository tourRepository;
+    private final ChevalRepository chevalRepository;
 
-    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository) {
+    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository, ChevalRepository chevalRepository) {
         this.organisationRepository = organisationRepository;
         this.participantRepository = participantRepository;
         this.competitionRepository = competitionRepository;
         this.barilRepository = barilRepository;
         this.allerRetourRepository = allerRetourRepository;
         this.tourRepository = tourRepository;
+        this.chevalRepository = chevalRepository;
     }
 
 
@@ -42,6 +44,12 @@ public class StageswsApplication implements CommandLineRunner {
 
         Participant parti = new Participant("jeremie@gmail.com", "Password1", "Munger", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
         participantRepository.save(parti);
+
+        Cheval cheval1 = new Cheval("Alfred", "Hongre", true, true, "1234", LocalDate.of(2006, 5, 10), "John", "Nany", "Canada", "Alberta");
+        cheval1.setOwner(parti);
+        Cheval cheval2 = new Cheval("Bob", "Hongre", false, false, null, null, null, null, null, null);
+        cheval2.setOwner(parti);
+        chevalRepository.saveAll(List.of(cheval1, cheval2));
 
         Baril baril1 = new Baril(3, 3000, 5.0);
         barilRepository.save(baril1);

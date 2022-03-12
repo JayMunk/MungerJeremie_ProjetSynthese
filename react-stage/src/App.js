@@ -10,6 +10,8 @@ import CreateCheval from './component/createAccount/createCheval/CreateCheval'
 import MyHorses from './component/MyHorses'
 import CreateCompetition from './component/Competition/createCompetition/CreateCompetition'
 import AfficherCompetitionOrganisation from './component/Competition/afficherCompetition/AfficherCompetitionOrganisation'
+import AfficherCompetition from './component/Competition/afficherCompetition/AfficherCompetition'
+import Sinscrire from './component/Competition/Sinscrire'
 
 
 
@@ -29,7 +31,9 @@ function App() {
               <Route exact path="/createCheval"><CreateCheval /></Route>
               <Route exact path="/myHorses"><MyHorses /></Route>
               <Route exact path="/createCompetition"><CreateCompetition /></Route>
+              <Route exact path="/afficherCompetition"><AfficherCompetition /></Route>
               <Route exact path="/afficherCompetitionOrganisation"><AfficherCompetitionOrganisation /></Route>
+              <Route exact path="/sinscrire"><Sinscrire /></Route>
             </Switch>
           </div>
         </UserInfo>

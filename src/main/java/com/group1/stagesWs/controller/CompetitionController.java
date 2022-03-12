@@ -53,4 +53,12 @@ public class CompetitionController {
         LocalDate dateFin = dateDebut.plusMonths(1);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
     }
+
+    @GetMapping("/competitionsByDateYear/{dateDebut}")
+    public ResponseEntity<List<Competition>> competitionsByDateYear(@PathVariable("dateDebut") String dateDebutString) {
+        logger.info("get - getCompetitionsByDateMonth " + dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateFin = dateDebut.plusYears(1);
+        return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
+    }
 }

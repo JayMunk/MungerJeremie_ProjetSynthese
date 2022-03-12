@@ -33,6 +33,13 @@ const CompetitionService = {
         const data = await res.json()
         console.log(data, "data")
         return data
+    },
+
+    getCompetitionsByDateYear: async (dateDebut) => {
+        const res = await fetch(urlBase + "/competitionsByDateYear/" + dateDebut)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
     }
 }
 export default CompetitionService

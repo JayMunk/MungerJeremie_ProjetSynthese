@@ -163,7 +163,7 @@ const MyHorses = () => {
                                             <tr>
                                                 <th className="bg-muted text-white">gain</th>
                                                 <td className="bg-secondary">
-                                                    {currentHorse.gain}
+                                                    {currentHorse.gain}$
                                                 </td>
                                             </tr>
 

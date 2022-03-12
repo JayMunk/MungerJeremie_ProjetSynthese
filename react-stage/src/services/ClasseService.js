@@ -44,6 +44,30 @@ const ClasseService = {
         const data = await res.json()
         console.log(data, "data")
         return data
+    },
+
+    sinscrireAllerRetour: async (chevalId, courriel, classeId) => {
+        console.log(chevalId, courriel, classeId, "Values to send")
+        const res = await fetch(urlBase + "/inscrireAllerRetour/" + chevalId + "/" + courriel + "/" + classeId)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
+    },
+
+    sinscrireBaril: async (chevalId, courriel, classeId) => {
+        console.log(chevalId, courriel, classeId, "Values to send")
+        const res = await fetch(urlBase + "/inscrireBaril/" + chevalId + "/" + courriel + "/" + classeId)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
+    },
+
+    sinscrireTour: async (chevalId, courriel, classeId) => {
+        console.log(chevalId, courriel, classeId, "Values to send")
+        const res = await fetch(urlBase + "/inscrireTour/" + chevalId + "/" + courriel + "/" + classeId)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
     }
 }
 export default ClasseService
