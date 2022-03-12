@@ -1,9 +1,9 @@
 import { React, useState } from 'react'
 import { useHistory } from "react-router-dom"
-import ParticipantService from '../../../services/ParticipantService';
+import ParticipantService from '../../../services/ParticipantService'
 
 const CreateParticipant = () => {
-    const history = useHistory();
+    const history = useHistory()
     const [values, setValues] = useState({
         prenom: "",
         nom: "",
@@ -64,7 +64,7 @@ const CreateParticipant = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         console.log(values, "User Values: ")
         setErrors(checkError(values))
 
@@ -72,8 +72,8 @@ const CreateParticipant = () => {
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
 
 
-            ParticipantService.saveParticipant(values);
-            history.push("/login");
+            ParticipantService.saveParticipant(values)
+            history.push("/login")
 
         }
     }
@@ -130,7 +130,7 @@ const CreateParticipant = () => {
                 <button type="submit" className="button btn btn-primary">S'inscrire</button>
             </form >
         </body>
-    );
+    )
 }
 
 export default CreateParticipant

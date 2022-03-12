@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { useHistory } from "react-router-dom"
 
 const MyHorses = () => {
-    const history = useHistory();
+    const history = useHistory()
     
 
     return (
@@ -10,7 +10,7 @@ const MyHorses = () => {
             <h2>MyHorses</h2>
             
         </body>
-    );
+    )
 }
 
 export default MyHorses

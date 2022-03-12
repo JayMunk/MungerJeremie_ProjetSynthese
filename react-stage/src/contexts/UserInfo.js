@@ -22,8 +22,8 @@ const UserInfo = ({children}) =>{
             </UserInfoContext.Provider>
         )
 }
-export const UserInfoContext = createContext(user);
-export default UserInfo;
+export const UserInfoContext = createContext(user)
+export default UserInfo
 
 
 

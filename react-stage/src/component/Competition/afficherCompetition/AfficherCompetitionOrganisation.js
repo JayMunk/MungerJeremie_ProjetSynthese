@@ -83,7 +83,7 @@ const AfficherCompetitionOrganisation = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         console.log(values, "Classe Values: ")
         setErrors(checkError(values))
 

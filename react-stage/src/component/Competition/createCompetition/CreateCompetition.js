@@ -4,7 +4,7 @@ import CompetitionService from '../../../services/CompetitionService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const CreateCompetition = () => {
-    const history = useHistory();
+    const history = useHistory()
     const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
     const [values, setValues] = useState({
         nom: "",
@@ -43,7 +43,7 @@ const CreateCompetition = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         console.log(values, "Competition Values: ")
         setErrors(checkError(values))
 
@@ -51,8 +51,8 @@ const CreateCompetition = () => {
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
 
 
-            CompetitionService.saveCompetition(values, loggedUser.courriel);
-            history.push("/addClasses");
+            CompetitionService.saveCompetition(values, loggedUser.courriel)
+            history.push("/addClasses")
 
         }
     }
@@ -83,7 +83,7 @@ const CreateCompetition = () => {
                 <button type="submit" className="button btn btn-primary">Créer compétition</button>
             </form >
         </body>
-    );
+    )
 }
 
 export default CreateCompetition

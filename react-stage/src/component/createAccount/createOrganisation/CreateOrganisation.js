@@ -1,9 +1,9 @@
 import { React, useState } from 'react'
 import { useHistory } from "react-router-dom"
-import OrganisationService from '../../../services/OrganisationService';
+import OrganisationService from '../../../services/OrganisationService'
 
 const CreateOrganisation = () => {
-    const history = useHistory();
+    const history = useHistory()
     const [values, setValues] = useState({
         nom: "",
         courriel: "",
@@ -55,7 +55,7 @@ const CreateOrganisation = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         console.log(values, "User Values: ")
         setErrors(checkError(values))
 
@@ -63,8 +63,8 @@ const CreateOrganisation = () => {
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
 
 
-            OrganisationService.saveOrganisation(values);
-            history.push("/login");
+            OrganisationService.saveOrganisation(values)
+            history.push("/login")
 
         }
     }
@@ -110,7 +110,7 @@ const CreateOrganisation = () => {
                 <button type="submit" className="button btn btn-primary">S'inscrire</button>
             </form >
         </body>
-    );
+    )
 }
 
 export default CreateOrganisation

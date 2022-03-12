@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import { UserInfoContext } from "../../contexts/UserInfo";
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useContext, useRef } from "react"
+import { useHistory } from "react-router-dom"
+import { UserInfoContext } from "../../contexts/UserInfo"
+import { Link } from 'react-router-dom'
 
 
 
 const LoginUser = () => {
 
-    const history = useHistory();
+    const history = useHistory()
     const [values, setValues] = useState({
 
         courriel: "",
@@ -48,7 +48,7 @@ const LoginUser = () => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
 
         setErrors(checkError(values))
 
@@ -87,7 +87,7 @@ const LoginUser = () => {
                                 isLoggedIn: true,
                                 role: data.role
                             })
-                            history.push("/");
+                            history.push("/")
                         }
                     })
                     .catch(error => {
@@ -97,7 +97,7 @@ const LoginUser = () => {
             }
         }
     }, [errors]
-    );
+    )
 
     useEffect(() => {
         if (loggedUser.isLoggedIn) {
@@ -135,7 +135,7 @@ const LoginUser = () => {
                 <button type="submit" className="button">Se connecter</button>
             </form >
         </body>
-    );
+    )
 }
 
 export default LoginUser

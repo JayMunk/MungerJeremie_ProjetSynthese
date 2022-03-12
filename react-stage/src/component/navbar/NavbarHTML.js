@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, Navbar } from 'react-bootstrap'
 import './NavbarCSS.css'
 import logo from './logo.svg'
-import { Link } from 'react-router-dom';
-import { UserInfoContext } from '../../contexts/UserInfo';
+import { Link } from 'react-router-dom'
+import { UserInfoContext } from '../../contexts/UserInfo'
 
 
 const NavbarHTML = () => {

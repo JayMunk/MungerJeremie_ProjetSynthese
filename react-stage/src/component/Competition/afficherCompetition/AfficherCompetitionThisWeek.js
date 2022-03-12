@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table"
 import { Link } from 'react-router-dom'
 
 const AfficherCompetitionThisWeek = () => {
-    const history = useHistory();
+    const history = useHistory()
     const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
 
@@ -23,8 +23,8 @@ const AfficherCompetitionThisWeek = () => {
     }, [])
 
     const inscrire = (competition) => {
-        //this.props.history.push({ pathname: "/voirClasses",  state:competition });
-        //props.history.push({ pathname: '/details', state });
+        //this.props.history.push({ pathname: "/voirClasses",  state:competition })
+        //props.history.push({ pathname: '/details', state })
     }
 
     const competitionList = listCompetitions.map((competition) =>
