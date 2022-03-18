@@ -119,49 +119,49 @@ const MyHorses = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">fatherName</th>
+                                                <th className="bg-muted text-white">Nom du père</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.fatherName}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">motherName</th>
+                                                <th className="bg-muted text-white">Nom de la mère</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.motherName}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">sexe</th>
+                                                <th className="bg-muted text-white">Sexe</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.sexe}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">dateOfBirth</th>
+                                                <th className="bg-muted text-white">Date de naissance</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.dateOfBirth}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">origineState</th>
+                                                <th className="bg-muted text-white">État d'origine</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.origineState}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">origineCountry</th>
+                                                <th className="bg-muted text-white">Pays d'origine</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.origineCountry}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">aqhanumber</th>
+                                                <th className="bg-muted text-white">Numéro AQHA</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.aqhanumber}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th className="bg-muted text-white">gain</th>
+                                                <th className="bg-muted text-white">Gain</th>
                                                 <td className="bg-secondary">
                                                     {currentHorse.gain}$
                                                 </td>
