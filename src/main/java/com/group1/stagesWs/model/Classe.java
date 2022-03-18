@@ -19,7 +19,6 @@ public class Classe implements Serializable {
     private Double penaliter;
 
     @OneToMany
-
     private List<Equipe> inscriptionList;
     @OneToMany
     private List<Equipe> ordreDePassage;

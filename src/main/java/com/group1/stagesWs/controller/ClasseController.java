@@ -46,4 +46,28 @@ public class ClasseController {
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
+
+    @PostMapping(path = "/inscrireAllerRetour/{chevalId}/{courriel}/{classeId}")
+    public ResponseEntity<AllerRetour> sinscrireAllerRetour(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
+        logger.info("post - sinscrireAllerRetour " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        return classeService.sinscrireAllerRetour(chevalId, courriel, classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @PostMapping(path = "/inscrireBaril/{chevalId}/{courriel}/{classeId}")
+    public ResponseEntity<Baril> sinscrireBaril(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
+        logger.info("post - sinscrireBaril " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        return classeService.sinscrireBaril(chevalId, courriel, classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @PostMapping(path = "/inscrireTour/{chevalId}/{courriel}/{classeId}")
+    public ResponseEntity<Tour> sinscrireTour(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
+        logger.info("post - sinscrireTour " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        return classeService.sinscrireTour(chevalId, courriel, classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
 }

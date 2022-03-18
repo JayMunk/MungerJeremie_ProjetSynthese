@@ -20,8 +20,9 @@ public class StageswsApplication implements CommandLineRunner {
     private final AllerRetourRepository allerRetourRepository;
     private final TourRepository tourRepository;
     private final ChevalRepository chevalRepository;
+    private final EquipeRepository equipeRepository;
 
-    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository, ChevalRepository chevalRepository) {
+    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository, ChevalRepository chevalRepository, EquipeRepository equipeRepository) {
         this.organisationRepository = organisationRepository;
         this.participantRepository = participantRepository;
         this.competitionRepository = competitionRepository;
@@ -29,6 +30,7 @@ public class StageswsApplication implements CommandLineRunner {
         this.allerRetourRepository = allerRetourRepository;
         this.tourRepository = tourRepository;
         this.chevalRepository = chevalRepository;
+        this.equipeRepository = equipeRepository;
     }
 
 
@@ -57,7 +59,11 @@ public class StageswsApplication implements CommandLineRunner {
         Tour tour1 = new Tour(2, 2500, 5.0);
         tourRepository.save(tour1);
 
+        Equipe equipe = new Equipe(parti,cheval1);
+        equipeRepository.save(equipe);
+
         AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
+        //allerRetour1.setInscriptionList(List.of(equipe));
         allerRetourRepository.save(allerRetour1);
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BarilRepository extends JpaRepository<Baril, Integer> {
+
+    Baril findById(int id);
 }

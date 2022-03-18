@@ -1,13 +1,8 @@
-import { React, useState, useContext, useEffect } from 'react'
-import { useHistory, withRouter } from "react-router-dom"
+import { React, useState, useEffect } from 'react'
 import CompetitionService from '../../../services/CompetitionService'
-import { UserInfoContext } from '../../../contexts/UserInfo'
 import Table from "react-bootstrap/Table"
-import { Link } from 'react-router-dom'
 
 const AfficherCompetitionThisWeek = () => {
-    const history = useHistory()
-    const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
 
     useEffect(() => {
@@ -22,18 +17,12 @@ const AfficherCompetitionThisWeek = () => {
         getCompetitions()
     }, [])
 
-    const inscrire = (competition) => {
-        //this.props.history.push({ pathname: "/voirClasses",  state:competition })
-        //props.history.push({ pathname: '/details', state })
-    }
-
     const competitionList = listCompetitions.map((competition) =>
         <tr key={competition.id.toString()}>
             <td>{competition.nom}</td>
             <td>{competition.date}</td>
             <td>{competition.adresse}</td>
             <td>{competition.organisation.nom}</td>
-            <td><button onClick={() => inscrire(competition)} >s'inscrire</button></td>
         </tr>)
 
     return (
@@ -47,8 +36,7 @@ const AfficherCompetitionThisWeek = () => {
                                     <th>Nom</th>
                                     <th>Date</th>
                                     <th>Addresse</th>
-                                    <th>Organisation</th> 
-                                    <th>Inscription</th>
+                                    <th>Organisation</th>
                                 </tr>
                             </thead>
                             <tbody>{competitionList}</tbody>

@@ -48,7 +48,10 @@ const ClasseService = {
 
     sinscrireAllerRetour: async (chevalId, courriel, classeId) => {
         console.log(chevalId, courriel, classeId, "Values to send")
-        const res = await fetch(urlBase + "/inscrireAllerRetour/" + chevalId + "/" + courriel + "/" + classeId)
+        const res = await fetch(urlBase + "/inscrireAllerRetour/" + chevalId + "/" + courriel + "/" + classeId,
+            {
+                method: 'POST'
+            })
         const data = await res.json()
         console.log(data, "data")
         return data
@@ -56,7 +59,10 @@ const ClasseService = {
 
     sinscrireBaril: async (chevalId, courriel, classeId) => {
         console.log(chevalId, courriel, classeId, "Values to send")
-        const res = await fetch(urlBase + "/inscrireBaril/" + chevalId + "/" + courriel + "/" + classeId)
+        const res = await fetch(urlBase + "/inscrireBaril/" + chevalId + "/" + courriel + "/" + classeId,
+            {
+                method: 'POST'
+            })
         const data = await res.json()
         console.log(data, "data")
         return data
@@ -64,7 +70,10 @@ const ClasseService = {
 
     sinscrireTour: async (chevalId, courriel, classeId) => {
         console.log(chevalId, courriel, classeId, "Values to send")
-        const res = await fetch(urlBase + "/inscrireTour/" + chevalId + "/" + courriel + "/" + classeId)
+        const res = await fetch(urlBase + "/inscrireTour/" + chevalId + "/" + courriel + "/" + classeId,
+            {
+                method: 'POST'
+            })
         const data = await res.json()
         console.log(data, "data")
         return data

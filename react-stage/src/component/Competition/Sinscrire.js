@@ -8,6 +8,7 @@ import ReactModal from "react-modal"
 import { AiOutlineClose } from "react-icons/ai"
 import ClasseService from '../../services/ClasseService'
 import ChevalService from '../../services/ChevalService'
+import { SelectPanel } from 'react-multi-select-component'
 
 const Sinscrire = () => {
     const history = useHistory()
@@ -15,21 +16,19 @@ const Sinscrire = () => {
     const [listCompetitions, setListCompetitions] = useState([])
     const [currentClasse, setCurrentClasse] = useState({})
     const [showModal, setShowModal] = useState(false)
-    const [values, setValues] = useState({
-        horseId: ""
-    })
     const [errors, setErrors] = useState(0)
     const [submitted, setSubmitted] = useState(false)
     const [classeType, setClasseType] = useState({})
     const [currentCompetitionId, setCurrentCompetitionId] = useState({})
     const [listHorses, setListHorses] = useState([])
-    let horseId = useState([])
+    const [horseId, setHorseId] = useState({})
 
     useEffect(() => {
         const getHorses = async () => {
             let dbHorses = await ChevalService.getHorsesByOwnerEmail(loggedUser.courriel)
             console.log(dbHorses, "dbHorses")
-            horseId=dbHorses[0].id
+            setHorseId(dbHorses[0].id)
+            //horseId=dbHorses[0].id
             setListHorses(dbHorses)
         }
         getHorses()
@@ -63,14 +62,13 @@ const Sinscrire = () => {
 
     const onChangeHorse = (e) => {
         let horse = JSON.parse(e.target.value)
-        console.log("onChangeHorse",horse)
-        horseId=horse.id
+        console.log("onChangeHorse", horse)
+        setHorseId(horse.id)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values, "Classe Values: ")
-        console.log("horseId",horseId)
+        console.log("horseId", horseId)
 
         setSubmitted(true)
         if (classeType == "AllerRetour") {
@@ -82,9 +80,7 @@ const Sinscrire = () => {
         }
         getCompetitions()
         setShowModal(false)
-        history.push("/afficherCompetitionOrganisation")
-
-
+        history.push("/")
     }
 
     const competitionList = listCompetitions.map((competition) =>
@@ -97,7 +93,7 @@ const Sinscrire = () => {
                     <input
                         type="button"
                         onClick={() => onClickClasse(competition.allerRetour, "AllerRetour", competition.id)}
-                        value="Voir/créer classe"
+                        value="S'inscrire"
                         className="p-1 btn-secondary"
                     /> :
                     null
@@ -108,7 +104,7 @@ const Sinscrire = () => {
                     <input
                         type="button"
                         onClick={() => onClickClasse(competition.baril, "Baril", competition.id)}
-                        value="Voir/créer classe"
+                        value="S'inscrire"
                         className="p-1 btn-secondary"
                     /> :
                     null
@@ -119,7 +115,7 @@ const Sinscrire = () => {
                     <input
                         type="button"
                         onClick={() => onClickClasse(competition.tour, "Tour", competition.id)}
-                        value="Voir/créer classe"
+                        value="S'inscrire"
                         className="p-1 btn-secondary"
                     />
                     :
@@ -220,7 +216,7 @@ const Sinscrire = () => {
                                     </label>
                                     <select onChange={onChangeHorse}>
                                         {listHorses.map((cheval) => (
-                                            <option value={JSON.stringify(cheval.id.toString())}>{cheval.nom}</option>
+                                            <option value={JSON.stringify(cheval)}>{cheval.nom}</option>
                                         ))}
                                     </select>
 
