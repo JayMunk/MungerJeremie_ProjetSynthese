@@ -123,6 +123,16 @@ const AfficherCompetitionOrganisation = () => {
         }
     }
 
+    const genererOrdre = async (currentClasse) => {
+        if (classeType == "AllerRetour") {
+            await ClasseService.genererOrdreAllerRetour(currentClasse.id.toString())
+        } else if (classeType == "Baril") {
+            await ClasseService.genererOrdreBaril(currentClasse.id.toString())
+        } else if (classeType == "Tour") {
+            await ClasseService.genererOrdreTour(currentClasse.id.toString())
+        }
+    }
+
     const inscriptionsListTable = inscriptionList.map((inscription, idx) =>
         <tr key={inscription.id.toString()}>
             <td>{inscriptionParticpant[idx].prenom} {inscriptionParticpant[idx].nom}</td>
@@ -248,7 +258,7 @@ const AfficherCompetitionOrganisation = () => {
                                         {inscriptionList.length > 0 ?
                                             <div>
                                                 <h2>Inscriptions</h2>
-                                                <table className="table">
+                                                <Table striped bordered hover variant="dark" id="tableCv">
                                                     <thead>
                                                         <tr>
                                                             <th>Nom participant</th>
@@ -256,11 +266,12 @@ const AfficherCompetitionOrganisation = () => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>{inscriptionsListTable}</tbody>
-                                                </table>
+                                                </Table>
                                             </div>
                                             :
                                             null
                                         }
+                                        <button className='button btn btn-primary' onClick={() => genererOrdre(currentClasse)}>générer ordre</button>
                                     </div>
                                     :
                                     <form onSubmit={handleSubmit} className="formInscription">
@@ -286,7 +297,6 @@ const AfficherCompetitionOrganisation = () => {
                                         <button type="submit" className="button btn btn-primary">Créer classe</button>
                                     </form >
                                 }
-
                             </div>
                         </ReactModal>
                     </div>

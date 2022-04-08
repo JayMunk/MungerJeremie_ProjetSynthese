@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ClasseService {
@@ -114,5 +115,58 @@ public class ClasseService {
         competition.setTour(finalClasse);
         competitionRepository.save(competition);
         return Optional.of(finalClasse);
+    }
+
+    public Optional<AllerRetour> genererOrdreAllerRetour(int classeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        Competition competition = competitionRepository.findByAllerRetour(classe);
+        List<Equipe> equipeList = classe.getInscriptionList();
+        List<Equipe> ordre = genererOrdre(equipeList);
+        classe.setOrdreDePassage(ordre);
+        AllerRetour finalClasse = allerRetourRepository.save(classe);
+        competition.setAllerRetour(finalClasse);
+        System.out.println(ordre);
+        competitionRepository.save(competition);
+        return Optional.of(finalClasse);
+    }
+
+    public Optional<Baril> genererOrdreBaril(int classeId) {
+        Baril classe = barilRepository.findById(classeId);
+        Competition competition = competitionRepository.findByBaril(classe);
+        List<Equipe> equipeList = classe.getInscriptionList();
+        List<Equipe> ordre = genererOrdre(equipeList);
+        classe.setOrdreDePassage(ordre);
+        Baril finalClasse = barilRepository.save(classe);
+        competition.setBaril(finalClasse);
+        System.out.println(ordre);
+        competitionRepository.save(competition);
+        return Optional.of(finalClasse);
+    }
+
+    public Optional<Tour> genererOrdreTour(int classeId) {
+        Tour classe = tourRepository.findById(classeId);
+        Competition competition = competitionRepository.findByTour(classe);
+        List<Equipe> equipeList = classe.getInscriptionList();
+        List<Equipe> ordre = genererOrdre(equipeList);
+        classe.setOrdreDePassage(ordre);
+        Tour finalClasse = tourRepository.save(classe);
+        competition.setTour(finalClasse);
+        System.out.println(ordre);
+        competitionRepository.save(competition);
+        return Optional.of(finalClasse);
+    }
+
+    private List<Equipe> genererOrdre(List<Equipe> equipeList) {
+        Random random_method = new Random();
+        List<Equipe> ordre = new ArrayList<>();
+        // loop for generation random number
+        for (int i = 0; i < equipeList.size(); i++) {
+            // generating random index with the help of
+            // nextInt() method
+            int index = random_method.nextInt(equipeList.size());
+
+            ordre.add(equipeList.get(index));
+        }
+        return ordre;
     }
 }

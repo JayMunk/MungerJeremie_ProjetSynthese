@@ -51,7 +51,9 @@ public class StageswsApplication implements CommandLineRunner {
         cheval1.setOwner(parti);
         Cheval cheval2 = new Cheval("Bob", "Hongre", false, false, null, null, null, null, null, null);
         cheval2.setOwner(parti);
-        chevalRepository.saveAll(List.of(cheval1, cheval2));
+        Cheval cheval3 = new Cheval("johny", "Hongre", false, false, null, null, null, null, null, null);
+        cheval2.setOwner(parti);
+        chevalRepository.saveAll(List.of(cheval1, cheval2, cheval3));
 
         Baril baril1 = new Baril(3, 3000, 5.0);
         barilRepository.save(baril1);
@@ -61,10 +63,11 @@ public class StageswsApplication implements CommandLineRunner {
 
         Equipe equipe1 = new Equipe(parti, cheval1);
         Equipe equipe2 = new Equipe(parti, cheval2);
-        equipeRepository.saveAll(List.of(equipe1, equipe2));
+        Equipe equipe3 = new Equipe(parti, cheval3);
+        equipeRepository.saveAll(List.of(equipe1, equipe2, equipe3));
 
         AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
-        allerRetour1.setInscriptionList(List.of(equipe1, equipe2));
+        allerRetour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
         allerRetourRepository.save(allerRetour1);
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());

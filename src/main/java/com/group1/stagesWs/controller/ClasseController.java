@@ -49,7 +49,7 @@ public class ClasseController {
 
     @PostMapping(path = "/inscrireAllerRetour/{chevalId}/{courriel}/{classeId}")
     public ResponseEntity<AllerRetour> sinscrireAllerRetour(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
-        logger.info("post - sinscrireAllerRetour " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        logger.info("post - sinscrireAllerRetour " + chevalId + "|| courriel " + courriel + "|| id " + classeId);
         return classeService.sinscrireAllerRetour(chevalId, courriel, classeId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
@@ -57,7 +57,7 @@ public class ClasseController {
 
     @PostMapping(path = "/inscrireBaril/{chevalId}/{courriel}/{classeId}")
     public ResponseEntity<Baril> sinscrireBaril(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
-        logger.info("post - sinscrireBaril " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        logger.info("post - sinscrireBaril " + chevalId + "|| courriel " + courriel + "|| id " + classeId);
         return classeService.sinscrireBaril(chevalId, courriel, classeId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
@@ -65,8 +65,32 @@ public class ClasseController {
 
     @PostMapping(path = "/inscrireTour/{chevalId}/{courriel}/{classeId}")
     public ResponseEntity<Tour> sinscrireTour(@PathVariable("chevalId") int chevalId, @PathVariable("courriel") String courriel, @PathVariable("classeId") int classeId) {
-        logger.info("post - sinscrireTour " + chevalId + "|| courriel " + courriel+"|| id " + classeId);
+        logger.info("post - sinscrireTour " + chevalId + "|| courriel " + courriel + "|| id " + classeId);
         return classeService.sinscrireTour(chevalId, courriel, classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @PostMapping(path = "/genererOrdreAllerRetour/{classeId}")
+    public ResponseEntity<AllerRetour> genererOrdreAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("post - id " + classeId);
+        return classeService.genererOrdreAllerRetour(classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @PostMapping(path = "/genererOrdreBaril/{classeId}")
+    public ResponseEntity<Baril> genererOrdreBaril(@PathVariable("classeId") int classeId) {
+        logger.info("post - id " + classeId);
+        return classeService.genererOrdreBaril(classeId)
+                .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
+                .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @PostMapping(path = "/genererOrdreTour/{classeId}")
+    public ResponseEntity<Tour> genererOrdreTour(@PathVariable("classeId") int classeId) {
+        logger.info("post - id " + classeId);
+        return classeService.genererOrdreTour(classeId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
