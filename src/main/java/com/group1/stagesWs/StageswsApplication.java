@@ -59,11 +59,12 @@ public class StageswsApplication implements CommandLineRunner {
         Tour tour1 = new Tour(2, 2500, 5.0);
         tourRepository.save(tour1);
 
-        Equipe equipe = new Equipe(parti,cheval1);
-        equipeRepository.save(equipe);
+        Equipe equipe1 = new Equipe(parti, cheval1);
+        Equipe equipe2 = new Equipe(parti, cheval2);
+        equipeRepository.saveAll(List.of(equipe1, equipe2));
 
         AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
-        //allerRetour1.setInscriptionList(List.of(equipe));
+        allerRetour1.setInscriptionList(List.of(equipe1, equipe2));
         allerRetourRepository.save(allerRetour1);
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());

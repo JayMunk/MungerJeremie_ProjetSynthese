@@ -12,6 +12,9 @@ const AfficherCompetitionOrganisation = () => {
     const history = useHistory()
     const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
+    const [inscriptionParticpant, setInscriptionParticpant] = useState([])
+    const [inscriptionCheval, setInscriptionCheval] = useState([])
+    const [inscriptionList, setInscriptionList] = useState([])
     const [currentClasse, setCurrentClasse] = useState({})
     const [showModal, setShowModal] = useState(false)
     const [values, setValues] = useState({
@@ -47,6 +50,21 @@ const AfficherCompetitionOrganisation = () => {
         console.log("typeClasse", typeClasse)
         setCurrentCompetitionId(competitionId)
         console.log("CurrentCompetitionId", competitionId)
+        setInscriptionList(classe.inscriptionList)
+        console.log("length", classe.inscriptionList.length)
+        if (classe.inscriptionList.length > 1) {
+            console.log("participant", classe.inscriptionList[0].participant)
+            let listeParticpant = []
+            for (var i = 0; i < classe.inscriptionList.length; i++) {
+                listeParticpant = [...listeParticpant, classe.inscriptionList[i].participant]
+            }
+            setInscriptionParticpant(listeParticpant)
+            let listeCheval = []
+            for (var i = 0; i < classe.inscriptionList.length; i++) {
+                listeCheval = [...listeCheval, classe.inscriptionList[i].cheval]
+            }
+            setInscriptionCheval(listeCheval)
+        }
 
         setShowModal(true)
     }
@@ -104,6 +122,13 @@ const AfficherCompetitionOrganisation = () => {
 
         }
     }
+
+    const inscriptionsListTable = inscriptionList.map((inscription, idx) =>
+        <tr key={inscription.id.toString()}>
+            <td>{inscriptionParticpant[idx].prenom} {inscriptionParticpant[idx].nom}</td>
+            <td>{inscriptionCheval[idx].nom}</td>
+        </tr>
+    )
 
     const competitionList = listCompetitions.map((competition) =>
         <tr key={competition.id.toString()}>
@@ -215,11 +240,27 @@ const AfficherCompetitionOrganisation = () => {
                                                 <tr>
                                                     <th className="bg-muted text-white">Nombre d'inscription</th>
                                                     <td className="bg-secondary">
-                                                        {null}
+                                                        {inscriptionList.length}
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        {inscriptionList.length > 0 ?
+                                            <div>
+                                                <h2>Inscriptions</h2>
+                                                <table className="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nom participant</th>
+                                                            <th>Nom cheval</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>{inscriptionsListTable}</tbody>
+                                                </table>
+                                            </div>
+                                            :
+                                            null
+                                        }
                                     </div>
                                     :
                                     <form onSubmit={handleSubmit} className="formInscription">
