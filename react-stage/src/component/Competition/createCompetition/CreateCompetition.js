@@ -51,8 +51,8 @@ const CreateCompetition = () => {
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
 
 
-            CompetitionService.saveCompetition(values, loggedUser.courriel)
-            history.push("/addClasses")
+            await CompetitionService.saveCompetition(values, loggedUser.courriel)
+            history.push("/afficherCompetitionOrganisation")
 
         }
     }

@@ -8,7 +8,7 @@ const AfficherCompetitionThisMonth = () => {
     useEffect(() => {
         const getCompetitions = async () => {
             var today = new Date()
-            var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + today.getDate()
+            var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate() + 1)).slice(-2)
             console.log(dateDebut, "date")
             let dbCompetitions = await CompetitionService.getCompetitionsByDateMonth(dateDebut)
             console.log(dbCompetitions, "dbCompetitions")
