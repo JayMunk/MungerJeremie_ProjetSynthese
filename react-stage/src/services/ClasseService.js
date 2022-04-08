@@ -110,6 +110,28 @@ const ClasseService = {
         const data = await res.json()
         console.log(data, "data")
         return data
+    },
+
+    getOrdreAllerRetour: async (classeId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getOrdreAllerRetour/' + classeId)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
+    },
+
+    getOrdreBaril: async (classeId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getOrdreBaril/' + classeId)
+        const data = await res.json()
+        return data
+    },
+
+    getOrdreTour: async (classeId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getOrdreTour/' + classeId)
+        const data = await res.json()
+        return data
     }
 }
 export default ClasseService

@@ -12,6 +12,7 @@ import CreateCompetition from './component/Competition/createCompetition/CreateC
 import AfficherCompetitionOrganisation from './component/Competition/afficherCompetition/AfficherCompetitionOrganisation'
 import AfficherCompetition from './component/Competition/afficherCompetition/AfficherCompetition'
 import Sinscrire from './component/Competition/Sinscrire'
+import VoirLiveCompetition from './component/Competition/voirLiveCompetition/VoirLiveCompetition'
 
 
 
@@ -34,6 +35,7 @@ function App() {
               <Route exact path="/afficherCompetition"><AfficherCompetition /></Route>
               <Route exact path="/afficherCompetitionOrganisation"><AfficherCompetitionOrganisation /></Route>
               <Route exact path="/sinscrire"><Sinscrire /></Route>
+              <Route exact path="/voirLiveCompetition"><VoirLiveCompetition /></Route>
             </Switch>
           </div>
         </UserInfo>
@@ -42,6 +44,5 @@ function App() {
     </Router>
   )
 }
-
 
 export default App

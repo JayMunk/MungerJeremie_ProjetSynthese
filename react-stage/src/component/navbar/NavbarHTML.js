@@ -26,6 +26,7 @@ const NavbarHTML = () => {
           }
 
           <Nav.Link as={Link} to="/afficherCompetition">Aficher compétition</Nav.Link>
+          <Nav.Link as={Link} to="/voirLiveCompetition">Voir compétition en direct</Nav.Link>
 
           {loggedUser.isLoggedIn && loggedUser.role === "PARTICIPANT" ?
             <Nav.Link as={Link} to="/sinscrire">S'inscrire</Nav.Link>

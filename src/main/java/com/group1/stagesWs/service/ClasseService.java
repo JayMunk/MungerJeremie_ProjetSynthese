@@ -156,7 +156,7 @@ public class ClasseService {
         return Optional.of(finalClasse);
     }
 
-    private List<Equipe> genererOrdre(List<Equipe> equipeList) {
+    public List<Equipe> genererOrdre(List<Equipe> equipeList) {
         Random random_method = new Random();
         List<Equipe> ordre = new ArrayList<>();
         // loop for generation random number
@@ -168,5 +168,20 @@ public class ClasseService {
             ordre.add(equipeList.get(index));
         }
         return ordre;
+    }
+
+    public List<Equipe> getOrdreAllerRetour(int classeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        return classe.getOrdreDePassage();
+    }
+
+    public List<Equipe> getOrdreBaril(int classeId) {
+        Baril classe = barilRepository.findById(classeId);
+        return classe.getOrdreDePassage();
+    }
+
+    public List<Equipe> getOrdreTour(int classeId) {
+        Tour classe = tourRepository.findById(classeId);
+        return classe.getOrdreDePassage();
     }
 }

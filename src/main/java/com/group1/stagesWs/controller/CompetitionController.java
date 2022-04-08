@@ -41,7 +41,7 @@ public class CompetitionController {
     @GetMapping("/competitionsByDateWeek/{dateDebut}")
     public ResponseEntity<List<Competition>> competitionsByDateWeek(@PathVariable("dateDebut") String dateDebutString) {
         logger.info("get - getCompetitionsByDateWeek " + dateDebutString);
-        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString).minusDays(1);
         LocalDate dateFin = dateDebut.plusDays(7);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
     }
@@ -49,7 +49,7 @@ public class CompetitionController {
     @GetMapping("/competitionsByDateMonth/{dateDebut}")
     public ResponseEntity<List<Competition>> competitionsByDateMonth(@PathVariable("dateDebut") String dateDebutString) {
         logger.info("get - getCompetitionsByDateMonth " + dateDebutString);
-        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString).minusDays(1);
         LocalDate dateFin = dateDebut.plusMonths(1);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
     }
@@ -57,7 +57,7 @@ public class CompetitionController {
     @GetMapping("/competitionsByDateYear/{dateDebut}")
     public ResponseEntity<List<Competition>> competitionsByDateYear(@PathVariable("dateDebut") String dateDebutString) {
         logger.info("get - getCompetitionsByDateMonth " + dateDebutString);
-        LocalDate dateDebut = LocalDate.parse(dateDebutString);
+        LocalDate dateDebut = LocalDate.parse(dateDebutString).minusDays(1);
         LocalDate dateFin = dateDebut.plusYears(1);
         return ResponseEntity.ok(competitionService.getCompetitionsByDate(dateDebut, dateFin));
     }

@@ -2,6 +2,7 @@ package com.group1.stagesWs.controller;
 
 import com.group1.stagesWs.model.AllerRetour;
 import com.group1.stagesWs.model.Baril;
+import com.group1.stagesWs.model.Equipe;
 import com.group1.stagesWs.model.Tour;
 import com.group1.stagesWs.service.ClasseService;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -93,5 +96,23 @@ public class ClasseController {
         return classeService.genererOrdreTour(classeId)
                 .map(classe1 -> ResponseEntity.status(HttpStatus.CREATED).body(classe1))
                 .orElse(ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @GetMapping("/getOrdreAllerRetour/{classeId}")
+    public ResponseEntity<List<Equipe>> getOrdreAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getOrdreAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getOrdreAllerRetour(classeId));
+    }
+
+    @GetMapping("/getOrdreBaril/{classeId}")
+    public ResponseEntity<List<Equipe>> getOrdreBaril(@PathVariable("classeId") int classeId) {
+        logger.info("get - getOrdreBaril " + classeId);
+        return ResponseEntity.ok(classeService.getOrdreBaril(classeId));
+    }
+
+    @GetMapping("/getOrdreTour/{classeId}")
+    public ResponseEntity<List<Equipe>> getOrdreTour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getOrdreTour " + classeId);
+        return ResponseEntity.ok(classeService.getOrdreTour(classeId));
     }
 }

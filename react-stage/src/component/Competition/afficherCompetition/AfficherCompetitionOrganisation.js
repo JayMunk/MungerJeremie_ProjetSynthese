@@ -50,20 +50,22 @@ const AfficherCompetitionOrganisation = () => {
         console.log("typeClasse", typeClasse)
         setCurrentCompetitionId(competitionId)
         console.log("CurrentCompetitionId", competitionId)
-        setInscriptionList(classe.inscriptionList)
-        console.log("length", classe.inscriptionList.length)
-        if (classe.inscriptionList.length > 1) {
-            console.log("participant", classe.inscriptionList[0].participant)
-            let listeParticpant = []
-            for (var i = 0; i < classe.inscriptionList.length; i++) {
-                listeParticpant = [...listeParticpant, classe.inscriptionList[i].participant]
+        if (classe != null) {
+            if (classe.inscriptionList.length > 1) {
+                setInscriptionList(classe.inscriptionList)
+                console.log("length", classe.inscriptionList.length)
+                console.log("participant", classe.inscriptionList[0].participant)
+                let listeParticpant = []
+                for (var i = 0; i < classe.inscriptionList.length; i++) {
+                    listeParticpant = [...listeParticpant, classe.inscriptionList[i].participant]
+                }
+                setInscriptionParticpant(listeParticpant)
+                let listeCheval = []
+                for (var i = 0; i < classe.inscriptionList.length; i++) {
+                    listeCheval = [...listeCheval, classe.inscriptionList[i].cheval]
+                }
+                setInscriptionCheval(listeCheval)
             }
-            setInscriptionParticpant(listeParticpant)
-            let listeCheval = []
-            for (var i = 0; i < classe.inscriptionList.length; i++) {
-                listeCheval = [...listeCheval, classe.inscriptionList[i].cheval]
-            }
-            setInscriptionCheval(listeCheval)
         }
 
         setShowModal(true)
@@ -131,6 +133,7 @@ const AfficherCompetitionOrganisation = () => {
         } else if (classeType == "Tour") {
             await ClasseService.genererOrdreTour(currentClasse.id.toString())
         }
+        getCompetitions()
     }
 
     const inscriptionsListTable = inscriptionList.map((inscription, idx) =>
@@ -267,11 +270,11 @@ const AfficherCompetitionOrganisation = () => {
                                                     </thead>
                                                     <tbody>{inscriptionsListTable}</tbody>
                                                 </Table>
+                                                <button className='button btn btn-primary' onClick={() => genererOrdre(currentClasse)}>générer ordre</button>
                                             </div>
                                             :
                                             null
                                         }
-                                        <button className='button btn btn-primary' onClick={() => genererOrdre(currentClasse)}>générer ordre</button>
                                     </div>
                                     :
                                     <form onSubmit={handleSubmit} className="formInscription">
