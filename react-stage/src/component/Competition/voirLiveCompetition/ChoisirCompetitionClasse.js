@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import ClasseService from '../../../services/ClasseService'
 import CompetitionService from '../../../services/CompetitionService'
 
-const ChoisirCompetitionClasse = () => {
+const ChoisirCompetitionClasse = ({ FormToParent }) => {
     const [listCompetitions, setListCompetitions] = useState([])
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -40,21 +40,21 @@ const ChoisirCompetitionClasse = () => {
 
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault()
         setErrors(checkError(values))
         console.log("values", values)
-        console.log("values2", values.competition.id.toString())
+        console.log("values2", values.competition.allerRetour.id.toString())
         if (Object.keys(checkError(values)).length === 0) {
             if (values.classe == "AllerRetour") {
-                let listOrdreData = await ClasseService.getOrdreAllerRetour(values.competition.id.toString())
-                
+                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
             } else if (values.classe == "Baril") {
-                let listOrdreData = await ClasseService.getOrdreBaril(values.competition.id.toString())
+                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
             } else if (values.classe == "Tour") {
-                let listOrdreData = await ClasseService.getOrdreTour(values.competition.id.toString())
+                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
             }
         }
+
     }
 
     function checkError(values) {
@@ -70,9 +70,10 @@ const ChoisirCompetitionClasse = () => {
 
         return errors
     }
-
-  return (
-    <form className="formInscription" onSubmit={handleSubmit}>
+    const data = "This is data from Child Component to the Parent Component."
+    return (
+        <div>
+            <form className="formInscription" onSubmit={handleSubmit}>
                 <h1>Sélectionner la compétition et la classe</h1>
 
 
@@ -104,7 +105,8 @@ const ChoisirCompetitionClasse = () => {
 
                 <button className="button" type="submit">Voir compétition</button>
             </form>
-  )
+        </div>
+    )
 }
 
 export default ChoisirCompetitionClasse

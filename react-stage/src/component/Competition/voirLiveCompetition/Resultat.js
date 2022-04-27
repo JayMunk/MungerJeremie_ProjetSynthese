@@ -20,7 +20,7 @@ const Resultat = (props) => {
             <td>{idx + 1}</td>
             <td>{resultatListParticipant[idx].prenom} {resultatListParticipant[idx].nom}</td>
             <td>{resultatListCheval[idx].nom}</td>
-            <td>{resultatListTemps[idx]}</td>
+            <td>{resultatListTemps[idx]}s</td>
         </tr>
     )
 
