@@ -184,4 +184,9 @@ public class ClasseService {
         Tour classe = tourRepository.findById(classeId);
         return classe.getOrdreDePassage();
     }
+
+    public List<Equipe> getResultatAllerRetour(int classeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        return classe.getClassement();
+    }
 }

@@ -10,6 +10,9 @@ const VoirLiveCompetition = () => {
     const [ordreList, setOrdreList] = useState([])
     const [ordreParticpant, setOrdreParticpant] = useState([])
     const [ordreCheval, setOrdreCheval] = useState([])
+    const [resultatList, setResultatList] = useState([])
+    const [equipeActuelIdx, setEquipeActuelIdx] = useState([])
+    const [equipeActuel, setEquipeActuel] = useState([])
 
     useEffect(() => {
         const getCompetitions = async () => {
@@ -23,7 +26,6 @@ const VoirLiveCompetition = () => {
             values.classe = "AllerRetour"
         }
         getCompetitions()
-
     }, [])
 
     const onChangeCompetition = (e) => {
@@ -42,6 +44,7 @@ const VoirLiveCompetition = () => {
 
     const setValueClasse = (classe) => {
         values.classe = classe
+
     }
 
     const setOrdre = (ordreList) => {
@@ -71,12 +74,30 @@ const VoirLiveCompetition = () => {
         console.log("values2", values.competition.id.toString())
         if (Object.keys(checkError(values)).length === 0) {
             if (values.classe == "AllerRetour") {
-                setOrdre(await ClasseService.getOrdreAllerRetour(values.competition.id.toString()))
+                let listOrdreData = await ClasseService.getOrdreAllerRetour(values.competition.id.toString())
+                setOrdre(listOrdreData)
+                let listResultatData = await ClasseService.getResultatAllerRetour(values.competition.id.toString())
+                setEquipeActuelValues(listResultatData)
+                setResultatList(listResultatData)
             } else if (values.classe == "Baril") {
                 setOrdre(await ClasseService.getOrdreBaril(values.competition.id.toString()))
+                //setResultatList(await ClasseService.getOrdreBaril(values.competition.id.toString()))
             } else if (values.classe == "Tour") {
                 setOrdre(await ClasseService.getOrdreTour(values.competition.id.toString()))
+                //setResultatList(await ClasseService.getOrdreTour(values.competition.id.toString()))
             }
+        }
+    }
+
+    const setEquipeActuelValues = async (listResultat) => {
+        console.log(listResultat, "listResultat")
+        if (listResultat.length > 0) {
+            let idx = listResultat.length - 1
+            setEquipeActuelIdx(idx)
+            console.log(idx, "EquipeActuelIdx")
+        } else {
+            setEquipeActuelIdx(0)
+            console.log(0, "EquipeActuelIdx")
         }
     }
 
@@ -96,10 +117,18 @@ const VoirLiveCompetition = () => {
 
     const ordreListTable = ordreList.map((inscription, idx) =>
         <tr key={inscription.id.toString()}>
+            <td>{idx + 1}</td>
             <td>{ordreParticpant[idx].prenom} {ordreParticpant[idx].nom}</td>
             <td>{ordreCheval[idx].nom}</td>
         </tr>
     )
+
+    const afficheEquipeActuel =
+        <tr>
+            <td>{ordreParticpant[equipeActuelIdx].prenom} {ordreParticpant[equipeActuelIdx].nom}</td>
+            <td>{ordreCheval[equipeActuelIdx].nom}</td>
+        </tr>
+
 
     return (
         <body id="body">
@@ -135,19 +164,44 @@ const VoirLiveCompetition = () => {
 
                 <button className="button" type="submit">Voir compétition</button>
             </form>
-
-            {ordreList.length > 0 ?
+            {ordreParticpant.length > 0 ?
                 <div>
-                    <h2>Ordre de passage</h2>
-                    <Table striped bordered hover variant="dark" id="tableCv">
-                        <thead>
-                            <tr>
-                                <th>Nom participant</th>
-                                <th>Nom cheval</th>
-                            </tr>
-                        </thead>
-                        <tbody>{ordreListTable}</tbody>
-                    </Table>
+                    <div>
+                        <div>
+                            <h2>Tour actuel</h2>
+                            <Table striped bordered hover variant="dark" id="tableCv">
+                                <thead>
+                                    <tr>
+                                        <th>Nom participant</th>
+                                        <th>Nom cheval</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {afficheEquipeActuel}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Chronometre</p>
+                    </div>
+                    <div>
+                        <p>resultats</p>
+                    </div>
+
+                    <div>
+                        <h2>Ordre de passage</h2>
+                        <Table striped bordered hover variant="dark" id="tableCv">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nom participant</th>
+                                    <th>Nom cheval</th>
+                                </tr>
+                            </thead>
+                            <tbody>{ordreListTable}</tbody>
+                        </Table>
+                    </div>
                 </div>
                 :
                 null

@@ -115,4 +115,10 @@ public class ClasseController {
         logger.info("get - getOrdreTour " + classeId);
         return ResponseEntity.ok(classeService.getOrdreTour(classeId));
     }
+
+    @GetMapping("/getResultatAllerRetour/{classeId}")
+    public ResponseEntity<List<Equipe>> getResultatAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getOrdreAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatAllerRetour(classeId));
+    }
 }

@@ -132,6 +132,14 @@ const ClasseService = {
         const res = await fetch(urlBase + '/getOrdreTour/' + classeId)
         const data = await res.json()
         return data
+    },
+
+    getResultatAllerRetour: async (classeId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getResultatAllerRetour/' + classeId)
+        const data = await res.json()
+        console.log(data, "data")
+        return data
     }
 }
 export default ClasseService
