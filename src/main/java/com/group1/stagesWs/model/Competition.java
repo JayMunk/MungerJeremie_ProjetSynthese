@@ -24,7 +24,7 @@ public class Competition implements Serializable {
     private Tour tour;
     @ManyToOne
     private Baril baril;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private AllerRetour allerRetour;
 
     public Competition() {

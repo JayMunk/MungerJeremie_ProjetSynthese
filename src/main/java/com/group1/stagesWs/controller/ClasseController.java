@@ -1,9 +1,6 @@
 package com.group1.stagesWs.controller;
 
-import com.group1.stagesWs.model.AllerRetour;
-import com.group1.stagesWs.model.Baril;
-import com.group1.stagesWs.model.Equipe;
-import com.group1.stagesWs.model.Tour;
+import com.group1.stagesWs.model.*;
 import com.group1.stagesWs.service.ClasseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,5 +117,23 @@ public class ClasseController {
     public ResponseEntity<List<Equipe>> getResultatAllerRetour(@PathVariable("classeId") int classeId) {
         logger.info("get - getOrdreAllerRetour " + classeId);
         return ResponseEntity.ok(classeService.getResultatAllerRetour(classeId));
+    }
+
+    @GetMapping("/getEquipeActuelIdAllerRetour/{classeId}")
+    public ResponseEntity<Integer> getEquipeActuelIdAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getEquipeActuelIdAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelIdAllerRetour(classeId));
+    }
+
+    @GetMapping("/getEquipeActuelParticipantAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity<Participant> getEquipeActuelParticipantAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelParticipantAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelParticipantAllerRetour(classeId, equipeId));
+    }
+
+    @GetMapping("/getEquipeActuelChevalAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity<Cheval> getEquipeActuelChevalAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelChevalAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelChevalAllerRetour(classeId, equipeId));
     }
 }

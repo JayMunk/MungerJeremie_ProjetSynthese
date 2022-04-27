@@ -189,4 +189,22 @@ public class ClasseService {
         AllerRetour classe = allerRetourRepository.findById(classeId);
         return classe.getClassement();
     }
+
+    public Integer getEquipeActuelIdAllerRetour(int classeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        List<Equipe> resultatList = classe.getClassement();
+        return resultatList.size();
+    }
+
+    public Participant getEquipeActuelParticipantAllerRetour(int classeId, int equipeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
+        return equipe.getParticipant();
+    }
+
+    public Cheval getEquipeActuelChevalAllerRetour(int classeId, int equipeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
+        return equipe.getCheval();
+    }
 }

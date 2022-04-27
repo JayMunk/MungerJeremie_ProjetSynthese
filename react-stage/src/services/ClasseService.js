@@ -140,6 +140,30 @@ const ClasseService = {
         const data = await res.json()
         console.log(data, "data")
         return data
-    }
+    },
+
+    getEquipeActuelIdAllerRetour: async (classeId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getEquipeActuelIdAllerRetour/' + classeId)
+        const data = await res.json()
+        console.log(data, "getEquipeActuelIdAllerRetour")
+        return data
+    },
+
+    getEquipeActuelParticipantAllerRetour: async (classeId, equipeActuelId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getEquipeActuelParticipantAllerRetour/' + classeId + '/' + equipeActuelId)
+        const data = await res.json()
+        console.log(data, "getEquipeActuelParticipantAllerRetour")
+        return data
+    },
+
+    getEquipeActuelChevalAllerRetour: async (classeId, equipeActuelId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getEquipeActuelChevalAllerRetour/' + classeId + '/' + equipeActuelId)
+        const data = await res.json()
+        console.log(data, "getEquipeActuelChevalAllerRetour")
+        return data
+    },
 }
 export default ClasseService
