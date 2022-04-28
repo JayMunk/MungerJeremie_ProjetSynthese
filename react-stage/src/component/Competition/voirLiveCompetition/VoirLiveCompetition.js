@@ -8,32 +8,9 @@ import ClasseService from '../../../services/ClasseService'
 
 const VoirLiveCompetition = () => {
     const [equipeActuelParticipant, setEquipeActuelParticipant] = useState({})
-    const [equipeActuelCheval, setEquipeActuelCheval] = useState({
-        id: 1,
-        nom: "Bird"
-    })
-    const [ordreListParticipant, setOrdreListParticipant] = useState([
-        {
-            id: 1,
-            prenom: "Jeremie",
-            nom: "Munger"
-        },
-        {
-            id: 2,
-            prenom: "Jeremie2",
-            nom: "Munger2"
-        }
-    ])
-    const [ordreListCheval, setOrdreListCheval] = useState([
-        {
-            id: 1,
-            nom: "Bird"
-        },
-        {
-            id: 2,
-            nom: "Bird2"
-        }
-    ])
+    const [equipeActuelCheval, setEquipeActuelCheval] = useState({})
+    const [ordreListParticipant, setOrdreListParticipant] = useState([])
+    const [ordreListCheval, setOrdreListCheval] = useState([])
     const [resultatListParticipant, setResultatListParticipant] = useState([
         {
             id: 1,
@@ -106,13 +83,15 @@ const VoirLiveCompetition = () => {
     }
 
     useEffect( async () => {
-        await getEquipeActuelParticipant(classeId, classeType, equipeActuelId)
-        await getEquipeActuelCheval(classeId, classeType, equipeActuelId)
+        await getEquipeActuel(classeId, classeType, equipeActuelId)
+        await getOrdre(classeId, classeType, equipeActuelId)
     }, [equipeActuelId])
 
-    const getEquipeActuelParticipant = async (classeId, classeType, equipeActuelId) =>{
+    const getOrdre = async (classeId, classeType, equipeActuelId) =>{
         if (classeType == "AllerRetour") {
-            setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantAllerRetour(classeId, equipeActuelId))
+            console.log("setOrdreListParticipant")
+            setOrdreListParticipant(await ClasseService.getOrdreListParticipantAllerRetour(classeId, equipeActuelId))
+            setOrdreListCheval(await ClasseService.getOrdreListChevalAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
             //FormToParent(await ClasseService.getEquipeActuelIdBaril(classeId))
         } else if (classeType == "Tour") {
@@ -120,8 +99,9 @@ const VoirLiveCompetition = () => {
         }
     }
 
-    const getEquipeActuelCheval = async (classeId, classeType, equipeActuelId) =>{
+    const getEquipeActuel = async (classeId, classeType, equipeActuelId) =>{
         if (classeType == "AllerRetour") {
+            setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantAllerRetour(classeId, equipeActuelId))
             setEquipeActuelCheval(await ClasseService.getEquipeActuelChevalAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
             //FormToParent(await ClasseService.getEquipeActuelIdBaril(classeId))
@@ -141,6 +121,6 @@ const VoirLiveCompetition = () => {
             <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
         </body>
     )
-}
+    }
 
 export default VoirLiveCompetition

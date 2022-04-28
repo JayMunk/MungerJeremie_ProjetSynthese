@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -48,10 +49,9 @@ public class StageswsApplication implements CommandLineRunner {
         organisationRepository.save(org);
 
         Participant participant1 = new Participant("jeremie@gmail.com", "Password1", "Munger", "Jeremie", LocalDate.of(2000, 4, 10), "438-692-7859");
-        participantRepository.save(participant1);
-
         Participant participant2 = new Participant("jimmy@gmail.com", "Password1", "Monny", "Jimmy", LocalDate.of(1995, 7, 30), "445-894-7563");
-        participantRepository.save(participant2);
+        Participant participant3 = new Participant("marcel@gmail.com", "Password1", "McMaffin", "Marcel", LocalDate.of(1995, 7, 30), "445-894-7563");
+        participantRepository.saveAll(List.of(participant1, participant2, participant3));
 
         Cheval cheval1 = new Cheval("Alfred", "Hongre", true, true, "1234", LocalDate.of(2006, 5, 10), "John", "Nany", "Canada", "Alberta");
         cheval1.setOwner(participant1);
@@ -62,8 +62,8 @@ public class StageswsApplication implements CommandLineRunner {
         chevalRepository.saveAll(List.of(cheval1, cheval2, cheval3));
 
         Equipe equipe1 = new Equipe(participant1, cheval1);
-        Equipe equipe2 = new Equipe(participant1, cheval2);
-        Equipe equipe3 = new Equipe(participant2, cheval3);
+        Equipe equipe2 = new Equipe(participant2, cheval2);
+        Equipe equipe3 = new Equipe(participant3, cheval3);
         equipeRepository.saveAll(List.of(equipe1, equipe2, equipe3));
 
         Baril baril1 = new Baril(3, 3000, 5.0);
@@ -78,7 +78,10 @@ public class StageswsApplication implements CommandLineRunner {
 
         AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
         allerRetour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
-        allerRetour1.setOrdreDePassage(List.of(equipe2, equipe3, equipe1));
+        //allerRetour1.setOrdreDePassage(List.of(equipe2, equipe3, equipe1));
+        allerRetour1.setOrdreDePassage(List.of(equipe1, equipe2, equipe3));
+        equipe2.setTemps(Duration.ofSeconds(15, 656));
+        allerRetour1.setClassement(List.of(equipe2));
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());
         competition1.setOrganisation(org);

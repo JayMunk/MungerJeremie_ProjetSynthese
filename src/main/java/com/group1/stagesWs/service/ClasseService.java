@@ -207,4 +207,22 @@ public class ClasseService {
         Equipe equipe = classe.getOrdreDePassage().get(equipeId);
         return equipe.getCheval();
     }
+
+    public List<Participant> getOrdreListParticipantAllerRetour(int classeId, int equipeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        List<Participant> tempListOrdreParticipant = new ArrayList<>();
+        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
+            tempListOrdreParticipant.add(classe.getOrdreDePassage().get(i).getParticipant());
+        }
+        return tempListOrdreParticipant;
+    }
+
+    public List<Cheval> getOrdreListChevalAllerRetour(int classeId, int equipeId) {
+        AllerRetour classe = allerRetourRepository.findById(classeId);
+        List<Cheval> tempListOrdreCheval = new ArrayList<>();
+        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
+            tempListOrdreCheval.add(classe.getOrdreDePassage().get(i).getCheval());
+        }
+        return tempListOrdreCheval;
+    }
 }

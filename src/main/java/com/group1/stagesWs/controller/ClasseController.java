@@ -136,4 +136,16 @@ public class ClasseController {
         logger.info("get - getEquipeActuelChevalAllerRetour " + classeId + ", " + equipeId);
         return ResponseEntity.ok(classeService.getEquipeActuelChevalAllerRetour(classeId, equipeId));
     }
+
+    @GetMapping("/getOrdreListParticipantAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity<List<Participant>> getOrdreListParticipantAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListParticipantAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListParticipantAllerRetour(classeId, equipeId));
+    }
+
+    @GetMapping("/getOrdreListChevalAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity<List<Cheval>> getOrdreListChevalAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListChevalAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListChevalAllerRetour(classeId, equipeId));
+    }
 }
