@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react'
 import ClasseService from '../../../services/ClasseService'
 import CompetitionService from '../../../services/CompetitionService'
 
-const ChoisirCompetitionClasse = ({ FormToParent }) => {
+const ChoisirCompetitionClasse = ({ formToParent }) => {
     const [listCompetitions, setListCompetitions] = useState([])
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -47,11 +47,11 @@ const ChoisirCompetitionClasse = ({ FormToParent }) => {
         console.log("values2", values.competition.allerRetour.id.toString())
         if (Object.keys(checkError(values)).length === 0) {
             if (values.classe == "AllerRetour") {
-                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
+                formToParent(values.competition.allerRetour.id.toString(), values.classe)
             } else if (values.classe == "Baril") {
-                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
+                formToParent(values.competition.allerRetour.id.toString(), values.classe)
             } else if (values.classe == "Tour") {
-                FormToParent(values.competition.allerRetour.id.toString(), values.classe)
+                formToParent(values.competition.allerRetour.id.toString(), values.classe)
             }
         }
 

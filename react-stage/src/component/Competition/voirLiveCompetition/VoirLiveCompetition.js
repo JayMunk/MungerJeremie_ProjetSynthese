@@ -9,6 +9,7 @@ import ClasseService from '../../../services/ClasseService'
 const VoirLiveCompetition = () => {
     const [equipeActuelParticipant, setEquipeActuelParticipant] = useState({})
     const [equipeActuelCheval, setEquipeActuelCheval] = useState({})
+    const [equipeActuelTemps, setEquipeActuelTemps] = useState({})
     const [ordreListParticipant, setOrdreListParticipant] = useState([])
     const [ordreListCheval, setOrdreListCheval] = useState([])
     const [resultatListParticipant, setResultatListParticipant] = useState([])
@@ -39,11 +40,18 @@ const VoirLiveCompetition = () => {
     const [classeType, setClasseType] = useState('');
     const [equipeActuelId, setEquipeActuelId] = useState('');
 
-    const FormToParent = (classeId, classeType) => {
+    const formToParent = (classeId, classeType) => {
         console.log(classeId,"classeId")
         setClasseId(classeId);
         console.log(classeType,"classeType")
         setClasseType(classeType);
+    }
+    const pushTime = (time) => {
+        console.log(time,"time")
+        console.log(("0" + Math.floor((time / 1000) % 60)).slice(-2),"time sec")
+        console.log(("0" + ((time / 10) % 100)).slice(-2),"time milsec")
+        setEquipeActuelTemps(time);
+        //post?
     }
 
     useEffect( async () => {
@@ -113,9 +121,9 @@ const VoirLiveCompetition = () => {
 
     return (
         <body id="body">
-            <ChoisirCompetitionClasse FormToParent={FormToParent}/>
+            <ChoisirCompetitionClasse formToParent={formToParent}/>
             <EqupeActuel prenom={equipeActuelParticipant.prenom} nom={equipeActuelParticipant.nom} nomCheval={equipeActuelCheval.nom} />
-            <Chronometre />
+            <Chronometre pushTime={pushTime}/>
             <Resultat listParticipant={resultatListParticipant} listCheval={resultatListCheval} listTemps={resultatListTemps} />
             <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
         </body>

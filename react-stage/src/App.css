@@ -159,3 +159,19 @@ p {
   animation: shine 200ms linear;
   transform: translateX(250px) rotate(-25deg);
 }
+
+.chronometre{
+  background-color: #43aada;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.numbers{
+  color: white;
+  font-size: 500%;
+}
+.buttons button{
+  font-size: 200%;
+  margin: 2%;
+  padding:2%;
+}
