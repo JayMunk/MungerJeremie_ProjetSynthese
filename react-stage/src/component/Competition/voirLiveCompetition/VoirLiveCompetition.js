@@ -11,31 +11,9 @@ const VoirLiveCompetition = () => {
     const [equipeActuelCheval, setEquipeActuelCheval] = useState({})
     const [ordreListParticipant, setOrdreListParticipant] = useState([])
     const [ordreListCheval, setOrdreListCheval] = useState([])
-    const [resultatListParticipant, setResultatListParticipant] = useState([
-        {
-            id: 1,
-            prenom: "Jeremie",
-            nom: "Munger"
-        },
-        {
-            id: 2,
-            prenom: "Jeremie2",
-            nom: "Munger2"
-        }
-    ])
-    const [resultatListCheval, setResultatListCheval] = useState([
-        {
-            id: 1,
-            nom: "Bird"
-        },
-        {
-            id: 2,
-            nom: "Bird2"
-        }
-    ])
-    const [resultatListTemps, setResultatListTemps] = useState([
-        "16.528", "17.125"
-    ])
+    const [resultatListParticipant, setResultatListParticipant] = useState([])
+    const [resultatListCheval, setResultatListCheval] = useState([])
+    const [resultatListTemps, setResultatListTemps] = useState([])
 
     //What i need
     //FORM
@@ -70,15 +48,32 @@ const VoirLiveCompetition = () => {
 
     useEffect( async () => {
         await getEquipeActuelId(classeId, classeType)
+        await getResultats(classeId, classeType)
     }, [classeId, classeType])
 
     const getEquipeActuelId = async (classeId, classeType) =>{
         if (classeType == "AllerRetour") {
             setEquipeActuelId(await ClasseService.getEquipeActuelIdAllerRetour(classeId))
         } else if (classeType == "Baril") {
-            //FormToParent(await ClasseService.getEquipeActuelIdBaril(classeId))
+            setEquipeActuelId(await ClasseService.getEquipeActuelIdBaril(classeId))
         } else if (classeType == "Tour") {
-            //FormToParent(await ClasseService.getEquipeActuelIdTour(classeId))
+            setEquipeActuelId(await ClasseService.getEquipeActuelIdTour(classeId))
+        }
+    }
+
+    const getResultats = async (classeId, classeType) =>{
+        if (classeType == "AllerRetour") {
+            setResultatListParticipant(await ClasseService.getResultatListParticipantAllerRetour(classeId))
+            setResultatListCheval(await ClasseService.getResultatListChevalAllerRetour(classeId, equipeActuelId))
+            setResultatListTemps(await ClasseService.getResultatListTempsAllerRetour(classeId, equipeActuelId))
+        } else if (classeType == "Baril") {
+            setResultatListParticipant(await ClasseService.getResultatListParticipantBaril(classeId))
+            setResultatListCheval(await ClasseService.getResultatListChevalBaril(classeId, equipeActuelId))
+            setResultatListTemps(await ClasseService.getResultatListTempsBaril(classeId, equipeActuelId))
+        } else if (classeType == "Tour") {
+            setResultatListParticipant(await ClasseService.getResultatListParticipantTour(classeId))
+            setResultatListCheval(await ClasseService.getResultatListChevalTour(classeId, equipeActuelId))
+            setResultatListTemps(await ClasseService.getResultatListTempsTour(classeId, equipeActuelId))
         }
     }
 
@@ -93,9 +88,11 @@ const VoirLiveCompetition = () => {
             setOrdreListParticipant(await ClasseService.getOrdreListParticipantAllerRetour(classeId, equipeActuelId))
             setOrdreListCheval(await ClasseService.getOrdreListChevalAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
-            //FormToParent(await ClasseService.getEquipeActuelIdBaril(classeId))
+            setOrdreListParticipant(await ClasseService.getOrdreListParticipantBaril(classeId, equipeActuelId))
+            setOrdreListCheval(await ClasseService.getOrdreListChevalBaril(classeId, equipeActuelId))
         } else if (classeType == "Tour") {
-            //FormToParent(await ClasseService.getEquipeActuelIdTour(classeId))
+            setOrdreListParticipant(await ClasseService.getOrdreListParticipantTour(classeId, equipeActuelId))
+            setOrdreListCheval(await ClasseService.getOrdreListChevalTour(classeId, equipeActuelId))
         }
     }
 
@@ -104,9 +101,11 @@ const VoirLiveCompetition = () => {
             setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantAllerRetour(classeId, equipeActuelId))
             setEquipeActuelCheval(await ClasseService.getEquipeActuelChevalAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
-            //FormToParent(await ClasseService.getEquipeActuelIdBaril(classeId))
+            setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantBaril(classeId, equipeActuelId))
+            setEquipeActuelCheval(await ClasseService.getEquipeActuelChevalBaril(classeId, equipeActuelId))
         } else if (classeType == "Tour") {
-            //FormToParent(await ClasseService.getEquipeActuelIdTour(classeId))
+            setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantTour(classeId, equipeActuelId))
+            setEquipeActuelCheval(await ClasseService.getEquipeActuelChevalTour(classeId, equipeActuelId))
         }
     }
 
@@ -121,6 +120,6 @@ const VoirLiveCompetition = () => {
             <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
         </body>
     )
-    }
+}
 
 export default VoirLiveCompetition

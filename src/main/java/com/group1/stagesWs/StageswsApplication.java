@@ -80,8 +80,8 @@ public class StageswsApplication implements CommandLineRunner {
         allerRetour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
         //allerRetour1.setOrdreDePassage(List.of(equipe2, equipe3, equipe1));
         allerRetour1.setOrdreDePassage(List.of(equipe1, equipe2, equipe3));
-        equipe2.setTemps(Duration.ofSeconds(15, 656));
-        allerRetour1.setClassement(List.of(equipe2));
+        equipe1.setTemps(Duration.ofSeconds(15, 656));
+        allerRetour1.setClassement(List.of(equipe1));
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());
         competition1.setOrganisation(org);

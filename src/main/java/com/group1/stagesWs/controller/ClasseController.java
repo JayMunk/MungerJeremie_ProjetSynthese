@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.List;
 
 @RestController
@@ -125,10 +126,34 @@ public class ClasseController {
         return ResponseEntity.ok(classeService.getEquipeActuelIdAllerRetour(classeId));
     }
 
+    @GetMapping("/getEquipeActuelIdBaril/{classeId}")
+    public ResponseEntity<Integer> getEquipeActuelIdBaril(@PathVariable("classeId") int classeId) {
+        logger.info("get - getEquipeActuelIdBaril " + classeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelIdBaril(classeId));
+    }
+
+    @GetMapping("/getEquipeActuelIdTour/{classeId}")
+    public ResponseEntity<Integer> getEquipeActuelIdTour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getEquipeActuelIdTour " + classeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelIdTour(classeId));
+    }
+
     @GetMapping("/getEquipeActuelParticipantAllerRetour/{classeId}/{equipeId}")
     public ResponseEntity<Participant> getEquipeActuelParticipantAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
         logger.info("get - getEquipeActuelParticipantAllerRetour " + classeId + ", " + equipeId);
         return ResponseEntity.ok(classeService.getEquipeActuelParticipantAllerRetour(classeId, equipeId));
+    }
+
+    @GetMapping("/getEquipeActuelParticipantBaril/{classeId}/{equipeId}")
+    public ResponseEntity<Participant> getEquipeActuelParticipantBaril(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelParticipantBaril " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelParticipantBaril(classeId, equipeId));
+    }
+
+    @GetMapping("/getEquipeActuelParticipantTour/{classeId}/{equipeId}")
+    public ResponseEntity<Participant> getEquipeActuelParticipantTour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelParticipantTour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelParticipantTour(classeId, equipeId));
     }
 
     @GetMapping("/getEquipeActuelChevalAllerRetour/{classeId}/{equipeId}")
@@ -137,15 +162,105 @@ public class ClasseController {
         return ResponseEntity.ok(classeService.getEquipeActuelChevalAllerRetour(classeId, equipeId));
     }
 
+    @GetMapping("/getEquipeActuelChevalBaril/{classeId}/{equipeId}")
+    public ResponseEntity<Cheval> getEquipeActuelChevalBaril(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelChevalBaril " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelChevalBaril(classeId, equipeId));
+    }
+
+    @GetMapping("/getEquipeActuelChevalTour/{classeId}/{equipeId}")
+    public ResponseEntity<Cheval> getEquipeActuelChevalTour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelChevalTour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelChevalTour(classeId, equipeId));
+    }
+
     @GetMapping("/getOrdreListParticipantAllerRetour/{classeId}/{equipeId}")
     public ResponseEntity<List<Participant>> getOrdreListParticipantAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
         logger.info("get - getOrdreListParticipantAllerRetour " + classeId + ", " + equipeId);
         return ResponseEntity.ok(classeService.getOrdreListParticipantAllerRetour(classeId, equipeId));
     }
 
+    @GetMapping("/getOrdreListParticipantBaril/{classeId}/{equipeId}")
+    public ResponseEntity<List<Participant>> getOrdreListParticipantBaril(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListParticipantAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListParticipantBaril(classeId, equipeId));
+    }
+
+    @GetMapping("/getOrdreListParticipantTour/{classeId}/{equipeId}")
+    public ResponseEntity<List<Participant>> getOrdreListParticipantTour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListParticipantTour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListParticipantTour(classeId, equipeId));
+    }
+
     @GetMapping("/getOrdreListChevalAllerRetour/{classeId}/{equipeId}")
     public ResponseEntity<List<Cheval>> getOrdreListChevalAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
         logger.info("get - getOrdreListChevalAllerRetour " + classeId + ", " + equipeId);
         return ResponseEntity.ok(classeService.getOrdreListChevalAllerRetour(classeId, equipeId));
+    }
+
+    @GetMapping("/getOrdreListChevalBaril/{classeId}/{equipeId}")
+    public ResponseEntity<List<Cheval>> getOrdreListChevalBaril(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListChevalBaril " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListChevalBaril(classeId, equipeId));
+    }
+
+    @GetMapping("/getOrdreListChevalTour/{classeId}/{equipeId}")
+    public ResponseEntity<List<Cheval>> getOrdreListChevalTour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getOrdreListChevalAllerRetour " + classeId + ", " + equipeId);
+        return ResponseEntity.ok(classeService.getOrdreListChevalTour(classeId, equipeId));
+    }
+
+    @GetMapping("/getResultatListParticipantAllerRetour/{classeId}")
+    public ResponseEntity<List<Participant>> getResultatListParticipantAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListParticipantAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListParticipantAllerRetour(classeId));
+    }
+
+    @GetMapping("/getResultatListParticipantBaril/{classeId}")
+    public ResponseEntity<List<Participant>> getResultatListParticipantBaril(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListParticipantBaril " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListParticipantBaril(classeId));
+    }
+
+    @GetMapping("/getResultatListParticipantTour/{classeId}")
+    public ResponseEntity<List<Participant>> getResultatListParticipantTour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListParticipantTour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListParticipantTour(classeId));
+    }
+
+    @GetMapping("/getResultatListChevalAllerRetour/{classeId}")
+    public ResponseEntity<List<Cheval>> getResultatListChevalAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListChevalAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListChevalAllerRetour(classeId));
+    }
+
+    @GetMapping("/getResultatListChevalBaril/{classeId}")
+    public ResponseEntity<List<Cheval>> getResultatListChevalBaril(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListChevalBaril " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListChevalBaril(classeId));
+    }
+
+    @GetMapping("/getResultatListChevalTour/{classeId}")
+    public ResponseEntity<List<Cheval>> getResultatListChevalTour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListChevalTour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListChevalTour(classeId));
+    }
+
+    @GetMapping("/getResultatListTempsAllerRetour/{classeId}")
+    public ResponseEntity<List<Duration>> getResultatListTempsAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListTempsAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListTempsAllerRetour(classeId));
+    }
+
+    @GetMapping("/getResultatListTempsBaril/{classeId}")
+    public ResponseEntity<List<Duration>> getResultatListTempsBaril(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListTempsBaril " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListTempsBaril(classeId));
+    }
+
+    @GetMapping("/getResultatListTempsTour/{classeId}")
+    public ResponseEntity<List<Duration>> getResultatListTempsTour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListTempsTour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListTempsTour(classeId));
     }
 }

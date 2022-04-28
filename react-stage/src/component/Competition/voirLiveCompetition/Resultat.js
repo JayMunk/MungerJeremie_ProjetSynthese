@@ -10,17 +10,18 @@ const Resultat = (props) => {
     useEffect(() => {
         console.log(props.listParticipant, "props.listParticipant")
         console.log(props.listCheval, "props.listCheval")
+        console.log(props.listTemps, "props.listTemps")
         setResultatListParticipant(props.listParticipant)
         setResultatListCheval(props.listCheval)
         setResultatListTemps(props.listTemps)
-    }, [])
+    }, [props])
 
     const resultatListTable = resultatListParticipant.map((inscription, idx) =>
         <tr key={resultatListParticipant.id}>
             <td>{idx + 1}</td>
             <td>{resultatListParticipant[idx].prenom} {resultatListParticipant[idx].nom}</td>
-            <td>{resultatListCheval[idx].nom}</td>
-            <td>{resultatListTemps[idx]}s</td>
+            <td>resultatListCheval[idx].nom</td>
+            <td>resultatListTemps[idx]s</td>
         </tr>
     )
 
