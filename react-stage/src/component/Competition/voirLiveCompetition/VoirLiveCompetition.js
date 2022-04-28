@@ -1,12 +1,14 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useContext } from 'react'
 import EqupeActuel from './EqupeActuel'
 import Chronometre from './Chronometre'
 import ChoisirCompetitionClasse from './ChoisirCompetitionClasse'
 import Resultat from './Resultat'
 import OrdreDePassage from './OrdreDePassage'
 import ClasseService from '../../../services/ClasseService'
+import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const VoirLiveCompetition = () => {
+    const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
     const [equipeActuelParticipant, setEquipeActuelParticipant] = useState({})
     const [equipeActuelCheval, setEquipeActuelCheval] = useState({})
     const [equipeActuelTemps, setEquipeActuelTemps] = useState({})
@@ -41,25 +43,25 @@ const VoirLiveCompetition = () => {
     const [equipeActuelId, setEquipeActuelId] = useState('');
 
     const formToParent = (classeId, classeType) => {
-        console.log(classeId,"classeId")
+        console.log(classeId, "classeId")
         setClasseId(classeId);
-        console.log(classeType,"classeType")
+        console.log(classeType, "classeType")
         setClasseType(classeType);
     }
     const pushTime = (time) => {
-        console.log(time,"time")
-        console.log(("0" + Math.floor((time / 1000) % 60)).slice(-2),"time sec")
-        console.log(("0" + ((time / 10) % 100)).slice(-2),"time milsec")
+        console.log(time, "time")
+        console.log(("0" + Math.floor((time / 1000) % 60)).slice(-2), "time sec")
+        console.log(("0" + ((time / 10) % 100)).slice(-2), "time milsec")
         setEquipeActuelTemps(time);
         //post?
     }
 
-    useEffect( async () => {
+    useEffect(async () => {
         await getEquipeActuelId(classeId, classeType)
         await getResultats(classeId, classeType)
     }, [classeId, classeType])
 
-    const getEquipeActuelId = async (classeId, classeType) =>{
+    const getEquipeActuelId = async (classeId, classeType) => {
         if (classeType == "AllerRetour") {
             setEquipeActuelId(await ClasseService.getEquipeActuelIdAllerRetour(classeId))
         } else if (classeType == "Baril") {
@@ -69,7 +71,7 @@ const VoirLiveCompetition = () => {
         }
     }
 
-    const getResultats = async (classeId, classeType) =>{
+    const getResultats = async (classeId, classeType) => {
         if (classeType == "AllerRetour") {
             setResultatListParticipant(await ClasseService.getResultatListParticipantAllerRetour(classeId))
             setResultatListCheval(await ClasseService.getResultatListChevalAllerRetour(classeId, equipeActuelId))
@@ -85,12 +87,12 @@ const VoirLiveCompetition = () => {
         }
     }
 
-    useEffect( async () => {
+    useEffect(async () => {
         await getEquipeActuel(classeId, classeType, equipeActuelId)
         await getOrdre(classeId, classeType, equipeActuelId)
     }, [equipeActuelId])
 
-    const getOrdre = async (classeId, classeType, equipeActuelId) =>{
+    const getOrdre = async (classeId, classeType, equipeActuelId) => {
         if (classeType == "AllerRetour") {
             console.log("setOrdreListParticipant")
             setOrdreListParticipant(await ClasseService.getOrdreListParticipantAllerRetour(classeId, equipeActuelId))
@@ -104,7 +106,7 @@ const VoirLiveCompetition = () => {
         }
     }
 
-    const getEquipeActuel = async (classeId, classeType, equipeActuelId) =>{
+    const getEquipeActuel = async (classeId, classeType, equipeActuelId) => {
         if (classeType == "AllerRetour") {
             setEquipeActuelParticipant(await ClasseService.getEquipeActuelParticipantAllerRetour(classeId, equipeActuelId))
             setEquipeActuelCheval(await ClasseService.getEquipeActuelChevalAllerRetour(classeId, equipeActuelId))
@@ -121,9 +123,14 @@ const VoirLiveCompetition = () => {
 
     return (
         <body id="body">
-            <ChoisirCompetitionClasse formToParent={formToParent}/>
+            <ChoisirCompetitionClasse formToParent={formToParent} />
             <EqupeActuel prenom={equipeActuelParticipant.prenom} nom={equipeActuelParticipant.nom} nomCheval={equipeActuelCheval.nom} />
-            <Chronometre pushTime={pushTime}/>
+            {
+                loggedUser.isLoggedIn && loggedUser.role === "ORGANISATION" ?
+                    <Chronometre pushTime={pushTime} />
+                    :
+                    null
+            }
             <Resultat listParticipant={resultatListParticipant} listCheval={resultatListCheval} listTemps={resultatListTemps} />
             <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
         </body>
