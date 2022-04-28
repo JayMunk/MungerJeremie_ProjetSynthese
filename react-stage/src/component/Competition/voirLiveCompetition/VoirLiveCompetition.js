@@ -124,15 +124,30 @@ const VoirLiveCompetition = () => {
     return (
         <body id="body">
             <ChoisirCompetitionClasse formToParent={formToParent} />
-            <EqupeActuel prenom={equipeActuelParticipant.prenom} nom={equipeActuelParticipant.nom} nomCheval={equipeActuelCheval.nom} />
+            {
+                Object.entries(equipeActuelParticipant).length != 0 ?
+                    <EqupeActuel prenom={equipeActuelParticipant.prenom} nom={equipeActuelParticipant.nom} nomCheval={equipeActuelCheval.nom} />
+                    :
+                    null
+            }
             {
                 loggedUser.isLoggedIn && loggedUser.role === "ORGANISATION" ?
                     <Chronometre pushTime={pushTime} />
                     :
                     null
             }
-            <Resultat listParticipant={resultatListParticipant} listCheval={resultatListCheval} listTemps={resultatListTemps} />
-            <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
+            {
+                resultatListParticipant.length > 0 ?
+                    <Resultat listParticipant={resultatListParticipant} listCheval={resultatListCheval} listTemps={resultatListTemps} />
+                    :
+                    null
+            }
+            {
+                ordreListParticipant.length > 0 ?
+                    <OrdreDePassage listParticipant={ordreListParticipant} listCheval={ordreListCheval} />
+                    :
+                    null
+            }
         </body>
     )
 }
