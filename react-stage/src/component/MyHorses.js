@@ -16,7 +16,7 @@ const MyHorses = () => {
     useEffect(() => {
         const getHorses = async () => {
             let dbHorses = await ChevalService.getHorsesByOwnerEmail(loggedUser.courriel)
-            console.log(dbHorses, "dbHorses")
+            //console.log(dbHorses, "dbHorses")
             setListHorses(dbHorses)
         }
         getHorses()
@@ -31,7 +31,7 @@ const MyHorses = () => {
     }
 
     const onClickHorse = (horse) => {
-        console.log("Currenthorse", horse)
+        //console.log("Currenthorse", horse)
         setCurrentHorse(horse)
         setShowModal(true)
     }

@@ -263,4 +263,21 @@ public class ClasseController {
         logger.info("get - getResultatListTempsTour " + classeId);
         return ResponseEntity.ok(classeService.getResultatListTempsTour(classeId));
     }
+
+    @GetMapping("/getResultatListAllerRetour/{classeId}")
+    public ResponseEntity<List<EquipeAfficher>> getResultatListAllerRetour(@PathVariable("classeId") int classeId) {
+        logger.info("get - getResultatListTempsTour " + classeId);
+        return ResponseEntity.ok(classeService.getResultatListAllerRetour(classeId));
+    }
+
+    @GetMapping("/getOrdreListAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity<List<EquipeAfficher>> getOrdreListAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getResultatListTempsTour " + classeId);
+        return ResponseEntity.ok(classeService.getOrdreListAllerRetour(classeId, equipeId));
+    }
+    @GetMapping("/getEquipeActuelAllerRetour/{classeId}/{equipeId}")
+    public ResponseEntity <EquipeAfficher> getEquipeActuelAllerRetour(@PathVariable("classeId") int classeId, @PathVariable("equipeId") int equipeId) {
+        logger.info("get - getEquipeActuelAllerRetour " + classeId);
+        return ResponseEntity.ok(classeService.getEquipeActuelAllerRetour(classeId, equipeId));
+    }
 }

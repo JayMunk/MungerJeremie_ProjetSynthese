@@ -14,8 +14,8 @@ const EqupeActuel = (props) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{props.prenom} {props.nom}</td>
-                        <td>{props.nomCheval}</td>
+                        <td>{props.equipe.prenom} {props.equipe.nom}</td>
+                        <td>{props.equipe.nomCheval}</td>
                     </tr>
                 </tbody>
             </Table>

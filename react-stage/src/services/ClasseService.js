@@ -12,7 +12,7 @@ const ClasseService = {
             }
         )
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
@@ -27,7 +27,7 @@ const ClasseService = {
             }
         )
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
@@ -42,291 +42,159 @@ const ClasseService = {
             }
         )
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     sinscrireAllerRetour: async (chevalId, courriel, classeId) => {
-        console.log(chevalId, courriel, classeId, "Values to send")
+        //console.log(chevalId, courriel, classeId, "Values to send")
         const res = await fetch(urlBase + "/inscrireAllerRetour/" + chevalId + "/" + courriel + "/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     sinscrireBaril: async (chevalId, courriel, classeId) => {
-        console.log(chevalId, courriel, classeId, "Values to send")
+        //console.log(chevalId, courriel, classeId, "Values to send")
         const res = await fetch(urlBase + "/inscrireBaril/" + chevalId + "/" + courriel + "/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     sinscrireTour: async (chevalId, courriel, classeId) => {
-        console.log(chevalId, courriel, classeId, "Values to send")
+        //console.log(chevalId, courriel, classeId, "Values to send")
         const res = await fetch(urlBase + "/inscrireTour/" + chevalId + "/" + courriel + "/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     genererOrdreAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + "/genererOrdreAllerRetour/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     genererOrdreBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + "/genererOrdreBaril/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     genererOrdreTour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + "/genererOrdreTour/" + classeId,
             {
                 method: 'POST'
             })
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     getOrdreAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getOrdreAllerRetour/' + classeId)
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     getOrdreBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getOrdreBaril/' + classeId)
         const data = await res.json()
         return data
     },
 
     getOrdreTour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getOrdreTour/' + classeId)
         const data = await res.json()
         return data
     },
 
     getResultatAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getResultatAllerRetour/' + classeId)
         const data = await res.json()
-        console.log(data, "data")
+        //console.log(data, "data")
         return data
     },
 
     getEquipeActuelIdAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getEquipeActuelIdAllerRetour/' + classeId)
         const data = await res.json()
-        console.log(data, "getEquipeActuelIdAllerRetour")
+        //console.log(data, "getEquipeActuelIdAllerRetour")
         return data
     },
 
     getEquipeActuelIdBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getEquipeActuelIdBaril/' + classeId)
         const data = await res.json()
-        console.log(data, "getEquipeActuelIdBaril")
+        //console.log(data, "getEquipeActuelIdBaril")
         return data
     },
 
     getEquipeActuelIdTour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getEquipeActuelIdTour/' + classeId)
         const data = await res.json()
-        console.log(data, "getEquipeActuelIdTour")
-        return data
-    },
-
-    getEquipeActuelParticipantAllerRetour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelParticipantAllerRetour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelParticipantAllerRetour")
-        return data
-    },
-    getEquipeActuelParticipantBaril: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelParticipantBaril/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelParticipantBaril")
-        return data
-    },
-    getEquipeActuelParticipantTour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelParticipantTour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelParticipantTour")
-        return data
-    },
-
-    getEquipeActuelChevalAllerRetour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelChevalAllerRetour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelChevalAllerRetour")
-        return data
-    },
-    getEquipeActuelChevalBaril: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelChevalBaril/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelChevalBaril")
-        return data
-    },
-    getEquipeActuelChevalTour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getEquipeActuelChevalTour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getEquipeActuelChevalTour")
-        return data
-    },
-
-    getOrdreListParticipantAllerRetour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListParticipantAllerRetour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListParticipantAllerRetour")
-        return data
-    },
-
-    getOrdreListParticipantBaril: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListParticipantBaril/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListParticipantBaril")
-        return data
-    },
-
-    getOrdreListParticipantTour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListParticipantTour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListParticipantTour")
-        return data
-    },
-
-    getOrdreListChevalAllerRetour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListChevalAllerRetour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListChevalAllerRetour")
-        return data
-    },
-
-    getOrdreListChevalBaril: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListChevalBaril/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListChevalBaril")
-        return data
-    },
-
-    getOrdreListChevalTour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getOrdreListChevalTour/' + classeId + '/' + equipeActuelId)
-        const data = await res.json()
-        console.log(data, "getOrdreListChevalTour")
-        return data
-    },
-
-    getResultatListParticipantAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListParticipantAllerRetour/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListParticipantAllerRetour")
-        return data
-    },
-
-    getResultatListParticipantBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListParticipantBaril/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListParticipantBaril")
-        return data
-    },
-
-    getResultatListParticipantTour: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListParticipantTour/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListParticipantTour")
-        return data
-    },
-
-    getResultatListChevalAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListChevalAllerRetour/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListChevalAllerRetour")
-        return data
-    },
-
-    getResultatListChevalBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListChevalBaril/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListChevalBaril")
-        return data
-    },
-
-    getResultatListChevalTour: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListChevalTour/' + classeId)
-        const data = await res.json()
-        console.log(data, "getResultatListChevalTour")
+        //console.log(data, "getEquipeActuelIdTour")
         return data
     },
 
     getResultatListTempsAllerRetour: async (classeId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getResultatListTempsAllerRetour/' + classeId)
         const data = await res.json()
-        console.log(data, "getResultatListTempsAllerRetour")
+        //console.log(data, "getResultatListTempsAllerRetour")
         return data
     },
 
-    getResultatListTempsBaril: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListTempsBaril/' + classeId)
+    getResultatListAllerRetour: async (classeId) => {
+        //console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getResultatListAllerRetour/' + classeId)
         const data = await res.json()
-        console.log(data, "getResultatListTempsBaril")
+        //console.log(data, "getResultatListAllerRetour")
         return data
     },
 
-    getResultatListTempsTour: async (classeId) => {
-        console.log(classeId, "Values to send")
-        const res = await fetch(urlBase + '/getResultatListTempsTour/' + classeId)
+    getOrdreListAllerRetour: async (classeId, equipeActuelId) => {
+        //console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getOrdreListAllerRetour/' + classeId + '/' + equipeActuelId)
         const data = await res.json()
-        console.log(data, "getResultatListTempsTour")
+        //console.log(data, "getOrdreListAllerRetour")
+        return data
+    },
+
+    getEquipeActuelAllerRetour: async (classeId, equipeActuelId) => {
+        console.log(classeId, "Values to send")
+        const res = await fetch(urlBase + '/getEquipeActuelAllerRetour/' + classeId + '/' + equipeActuelId)
+        const data = await res.json()
+        console.log(data, "getEquipeActuelAllerRetour")
         return data
     },
 }

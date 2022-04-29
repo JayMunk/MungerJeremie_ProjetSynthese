@@ -3,27 +3,10 @@ import Table from 'react-bootstrap/Table'
 
 
 const Resultat = (props) => {
-    const [resultatListParticipant, setResultatListParticipant] = useState([props.listParticipant])
-    const [resultatListCheval, setResultatListCheval] = useState([props.listCheval])
-    const [resultatListTemps, setResultatListTemps] = useState([props.listTemps])
-
+    const [resultatList, setResultatList] = useState([])
     useEffect(() => {
-        console.log(props.listParticipant, "props.listParticipant")
-        console.log(props.listCheval, "props.listCheval")
-        console.log(props.listTemps, "props.listTemps")
-        setResultatListParticipant(props.listParticipant)
-        setResultatListCheval(props.listCheval)
-        setResultatListTemps(props.listTemps)
-    }, [props])
-
-    const resultatListTable = resultatListParticipant.map((inscription, idx) =>
-        <tr key={resultatListParticipant.id}>
-            <td>{idx + 1}</td>
-            <td>{resultatListParticipant[idx].prenom} {resultatListParticipant[idx].nom}</td>
-            <td>resultatListCheval[idx].nom</td>
-            <td>resultatListTemps[idx]s</td>
-        </tr>
-    )
+        setResultatList(props.resultatList)
+    }, [])
 
     return (
         <div>
@@ -38,7 +21,14 @@ const Resultat = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {resultatListTable}
+                    {resultatList.map((equipe, idx) =>
+                        <tr key={equipe.id}>
+                            <td>{idx + 1}</td>
+                            <td>{equipe.prenom} {equipe.nom}</td>
+                            <td>{equipe.nomCheval}</td>
+                            <td>{equipe.temps}s</td>
+                        </tr>
+                    )}
                 </tbody>
             </Table>
         </div>
