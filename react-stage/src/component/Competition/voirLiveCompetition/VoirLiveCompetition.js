@@ -15,6 +15,7 @@ const VoirLiveCompetition = () => {
     const [classeType, setClasseType] = useState('')
     const [equipeActuelId, setEquipeActuelId] = useState('')
     const [equipeActuel, setEquipeActuel] = useState([])
+    const [equipeActuelTemps, setEquipeActuelTemps] = useState('')
 
     //What i need
     //FORM

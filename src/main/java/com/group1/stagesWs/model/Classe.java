@@ -19,12 +19,12 @@ public class Classe implements Serializable {
     private Double penaliter;
 
     @OneToMany
-    private List<Equipe> inscriptionList;
+    private List<Inscription> inscriptionList;
     @OneToMany
-    private List<Equipe> ordreDePassage;
+    private List<Inscription> ordreDePassage;
 
     @OneToMany
-    private List<Equipe> classement;
+    private List<Inscription> classement;
 
     public Classe() {
     }

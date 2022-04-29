@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,8 +23,9 @@ public class StageswsApplication implements CommandLineRunner {
     private final ChevalRepository chevalRepository;
     private final EquipeRepository equipeRepository;
     private final ClasseService classeService;
+    private final InscriptionRepository inscriptionRepository;
 
-    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository, ChevalRepository chevalRepository, EquipeRepository equipeRepository, ClasseService classeService) {
+    public StageswsApplication(OrganisationRepository organisationRepository, ParticipantRepository participantRepository, CompetitionRepository competitionRepository, BarilRepository barilRepository, AllerRetourRepository allerRetourRepository, TourRepository tourRepository, ChevalRepository chevalRepository, EquipeRepository equipeRepository, ClasseService classeService, InscriptionRepository inscriptionRepository) {
         this.organisationRepository = organisationRepository;
         this.participantRepository = participantRepository;
         this.competitionRepository = competitionRepository;
@@ -35,6 +35,7 @@ public class StageswsApplication implements CommandLineRunner {
         this.chevalRepository = chevalRepository;
         this.equipeRepository = equipeRepository;
         this.classeService = classeService;
+        this.inscriptionRepository = inscriptionRepository;
     }
 
 
@@ -67,21 +68,35 @@ public class StageswsApplication implements CommandLineRunner {
         Equipe equipe3 = new Equipe(participant3, cheval3);
         equipeRepository.saveAll(List.of(equipe1, equipe2, equipe3));
 
+        Inscription inscription1=new Inscription(participant1, cheval1);
+        equipe1.setTemps("15,656");
+        Inscription inscription2 = new Inscription(participant2, cheval2);
+        Inscription inscription3 = new Inscription(participant3, cheval3);
+        inscriptionRepository.saveAll(List.of(inscription1, inscription2, inscription3));
+
         Baril baril1 = new Baril(3, 3000, 5.0);
-        baril1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
+        baril1.setInscriptionList(List.of(inscription1, inscription2, inscription3));
         //baril1.setOrdreDePassage(classeService.genererOrdre(List.of(equipe1, equipe2, equipe3)));
         barilRepository.save(baril1);
 
         Tour tour1 = new Tour(2, 2500, 5.0);
-        tour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
+        tour1.setInscriptionList(List.of(inscription1, inscription2, inscription3));
         //tour1.setOrdreDePassage(classeService.genererOrdre(List.of(equipe1, equipe2, equipe3)));
         tourRepository.save(tour1);
 
         AllerRetour allerRetour1 = new AllerRetour(2, 500, 5.0);
-        allerRetour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
+        //allerRetour1.setInscriptionList(List.of(inscription1, inscription2, inscription3));
         //allerRetour1.setOrdreDePassage(List.of(equipe2, equipe3, equipe1));
-        allerRetour1.setOrdreDePassage(List.of(equipe1, equipe2, equipe3));
-        allerRetour1.setClassement(List.of(equipe1));
+        //allerRetour1.setOrdreDePassage(List.of(inscription1, inscription2, inscription3));
+        //allerRetour1.setClassement(List.of(inscription1));
+
+        Inscription temp = new Inscription(participant1, cheval1);
+        allerRetour1.setInscriptionList(List.of(temp));
+        allerRetour1.setOrdreDePassage(List.of(temp));
+        temp.setTemps("15.25");
+        inscriptionRepository.save(temp);
+        allerRetour1.setClassement(List.of(temp));
+        allerRetourRepository.save(allerRetour1);
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());
         competition1.setOrganisation(org);
