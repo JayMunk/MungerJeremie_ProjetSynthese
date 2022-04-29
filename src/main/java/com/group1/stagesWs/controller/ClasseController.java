@@ -247,19 +247,19 @@ public class ClasseController {
     }
 
     @GetMapping("/getResultatListTempsAllerRetour/{classeId}")
-    public ResponseEntity<List<Duration>> getResultatListTempsAllerRetour(@PathVariable("classeId") int classeId) {
+    public ResponseEntity<List<String>> getResultatListTempsAllerRetour(@PathVariable("classeId") int classeId) {
         logger.info("get - getResultatListTempsAllerRetour " + classeId);
         return ResponseEntity.ok(classeService.getResultatListTempsAllerRetour(classeId));
     }
 
     @GetMapping("/getResultatListTempsBaril/{classeId}")
-    public ResponseEntity<List<Duration>> getResultatListTempsBaril(@PathVariable("classeId") int classeId) {
+    public ResponseEntity<List<String>> getResultatListTempsBaril(@PathVariable("classeId") int classeId) {
         logger.info("get - getResultatListTempsBaril " + classeId);
         return ResponseEntity.ok(classeService.getResultatListTempsBaril(classeId));
     }
 
     @GetMapping("/getResultatListTempsTour/{classeId}")
-    public ResponseEntity<List<Duration>> getResultatListTempsTour(@PathVariable("classeId") int classeId) {
+    public ResponseEntity<List<String>> getResultatListTempsTour(@PathVariable("classeId") int classeId) {
         logger.info("get - getResultatListTempsTour " + classeId);
         return ResponseEntity.ok(classeService.getResultatListTempsTour(classeId));
     }

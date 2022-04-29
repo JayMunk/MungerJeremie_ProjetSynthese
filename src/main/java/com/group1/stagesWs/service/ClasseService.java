@@ -353,27 +353,27 @@ public class ClasseService {
         return tempListResultatCheval;
     }
 
-    public List<Duration> getResultatListTempsAllerRetour(int classeId) {
+    public List<String> getResultatListTempsAllerRetour(int classeId) {
         AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<Duration> tempListResultatTemps = new ArrayList<>();
+        List<String> tempListResultatTemps = new ArrayList<>();
         for (Equipe equipe : classe.getClassement()) {
             tempListResultatTemps.add(equipe.getTemps());
         }
         return tempListResultatTemps;
     }
 
-    public List<Duration> getResultatListTempsBaril(int classeId) {
+    public List<String> getResultatListTempsBaril(int classeId) {
         Baril classe = barilRepository.findById(classeId);
-        List<Duration> tempListResultatTemps = new ArrayList<>();
+        List<String> tempListResultatTemps = new ArrayList<>();
         for (Equipe equipe : classe.getClassement()) {
             tempListResultatTemps.add(equipe.getTemps());
         }
         return tempListResultatTemps;
     }
 
-    public List<Duration> getResultatListTempsTour(int classeId) {
+    public List<String> getResultatListTempsTour(int classeId) {
         Tour classe = tourRepository.findById(classeId);
-        List<Duration> tempListResultatTemps = new ArrayList<>();
+        List<String> tempListResultatTemps = new ArrayList<>();
         for (Equipe equipe : classe.getClassement()) {
             tempListResultatTemps.add(equipe.getTemps());
         }

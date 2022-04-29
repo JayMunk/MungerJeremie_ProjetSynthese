@@ -17,7 +17,7 @@ public class Equipe implements Serializable {
     private Participant participant;
     @ManyToOne
     private Cheval cheval;
-    private Duration temps;
+    private String temps;
     private int nbPenaliter;
 
     public Equipe() {

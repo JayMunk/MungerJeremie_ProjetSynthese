@@ -175,10 +175,10 @@ const ClasseService = {
     },
 
     getResultatListAllerRetour: async (classeId) => {
-        //console.log(classeId, "Values to send")
+        console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getResultatListAllerRetour/' + classeId)
         const data = await res.json()
-        //console.log(data, "getResultatListAllerRetour")
+        console.log(data, "getResultatListAllerRetour")
         return data
     },
 
@@ -191,10 +191,10 @@ const ClasseService = {
     },
 
     getEquipeActuelAllerRetour: async (classeId, equipeActuelId) => {
-        console.log(classeId, "Values to send")
+        //console.log(classeId, "Values to send")
         const res = await fetch(urlBase + '/getEquipeActuelAllerRetour/' + classeId + '/' + equipeActuelId)
         const data = await res.json()
-        console.log(data, "getEquipeActuelAllerRetour")
+        //console.log(data, "getEquipeActuelAllerRetour")
         return data
     },
 }

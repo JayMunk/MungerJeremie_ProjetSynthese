@@ -62,6 +62,7 @@ public class StageswsApplication implements CommandLineRunner {
         chevalRepository.saveAll(List.of(cheval1, cheval2, cheval3));
 
         Equipe equipe1 = new Equipe(participant1, cheval1);
+        equipe1.setTemps("15,656");
         Equipe equipe2 = new Equipe(participant2, cheval2);
         Equipe equipe3 = new Equipe(participant3, cheval3);
         equipeRepository.saveAll(List.of(equipe1, equipe2, equipe3));
@@ -80,7 +81,6 @@ public class StageswsApplication implements CommandLineRunner {
         allerRetour1.setInscriptionList(List.of(equipe1, equipe2, equipe3));
         //allerRetour1.setOrdreDePassage(List.of(equipe2, equipe3, equipe1));
         allerRetour1.setOrdreDePassage(List.of(equipe1, equipe2, equipe3));
-        equipe1.setTemps(Duration.ofSeconds(15, 656));
         allerRetour1.setClassement(List.of(equipe1));
 
         Competition competition1 = new Competition("Open de Saint-Jean", "123 rue principal Saint-Jean", LocalDate.now());

@@ -15,12 +15,12 @@ public class EquipeAfficher implements Serializable {
     private String prenom;
     private String nom;
     private String nomCheval;
-    private Duration temps;
+    private String temps;
 
     public EquipeAfficher() {
     }
 
-    public EquipeAfficher(int id, String prenom, String nom, String nomCheval, Duration temps) {
+    public EquipeAfficher(int id, String prenom, String nom, String nomCheval, String temps) {
         this.id = id;
         this.prenom = prenom;
         this.nom = nom;
