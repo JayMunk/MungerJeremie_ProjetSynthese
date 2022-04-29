@@ -78,7 +78,9 @@ const VoirLiveCompetition = () => {
         if (classeType == "AllerRetour") {
             setResultatList(await ClasseService.getResultatListAllerRetour(classeId))
         } else if (classeType == "Baril") {
+            setResultatList(await ClasseService.getResultatListBaril(classeId))
         } else if (classeType == "Tour") {
+            setResultatList(await ClasseService.getResultatListTour(classeId))
         }
     }
 
@@ -91,7 +93,9 @@ const VoirLiveCompetition = () => {
         if (classeType == "AllerRetour") {
             setOrdreList(await ClasseService.getOrdreListAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
+            setOrdreList(await ClasseService.getOrdreListBaril(classeId, equipeActuelId))
         } else if (classeType == "Tour") {
+            setOrdreList(await ClasseService.getOrdreListTour(classeId, equipeActuelId))
         }
     }
 
@@ -99,7 +103,9 @@ const VoirLiveCompetition = () => {
         if (classeType == "AllerRetour") {
             setEquipeActuel(await ClasseService.getEquipeActuelAllerRetour(classeId, equipeActuelId))
         } else if (classeType == "Baril") {
+            setEquipeActuel(await ClasseService.getEquipeActuelBaril(classeId, equipeActuelId))
         } else if (classeType == "Tour") {
+            setEquipeActuel(await ClasseService.getEquipeActuelTour(classeId, equipeActuelId))
         }
     }
 

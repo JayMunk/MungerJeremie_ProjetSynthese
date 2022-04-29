@@ -4,7 +4,6 @@ import com.group1.stagesWs.model.*;
 import com.group1.stagesWs.repositories.*;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -176,15 +175,6 @@ public class ClasseService {
         return classe.getOrdreDePassage();
     }
 
-    public List<Equipe> getOrdreBaril(int classeId) {
-        Baril classe = barilRepository.findById(classeId);
-        return classe.getOrdreDePassage();
-    }
-
-    public List<Equipe> getOrdreTour(int classeId) {
-        Tour classe = tourRepository.findById(classeId);
-        return classe.getOrdreDePassage();
-    }
 
     public List<Equipe> getResultatAllerRetour(int classeId) {
         AllerRetour classe = allerRetourRepository.findById(classeId);
@@ -209,50 +199,6 @@ public class ClasseService {
         return resultatList.size();
     }
 
-    public Participant getEquipeActuelParticipantAllerRetour(int classeId, int equipeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getParticipant();
-    }
-
-    public Participant getEquipeActuelParticipantBaril(int classeId, int equipeId) {
-        Baril classe = barilRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getParticipant();
-    }
-
-    public Participant getEquipeActuelParticipantTour(int classeId, int equipeId) {
-        Tour classe = tourRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getParticipant();
-    }
-
-    public Cheval getEquipeActuelChevalAllerRetour(int classeId, int equipeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getCheval();
-    }
-
-    public Cheval getEquipeActuelChevalBaril(int classeId, int equipeId) {
-        Baril classe = barilRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getCheval();
-    }
-
-    public Cheval getEquipeActuelChevalTour(int classeId, int equipeId) {
-        Tour classe = tourRepository.findById(classeId);
-        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
-        return equipe.getCheval();
-    }
-
-    public List<Participant> getOrdreListParticipantAllerRetour(int classeId, int equipeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<Participant> tempListOrdreParticipant = new ArrayList<>();
-        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
-            tempListOrdreParticipant.add(classe.getOrdreDePassage().get(i).getParticipant());
-        }
-        return tempListOrdreParticipant;
-    }
 
     public List<Participant> getOrdreListParticipantBaril(int classeId, int equipeId) {
         Baril classe = barilRepository.findById(classeId);
@@ -272,24 +218,6 @@ public class ClasseService {
         return tempListOrdreParticipant;
     }
 
-    public List<Cheval> getOrdreListChevalAllerRetour(int classeId, int equipeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<Cheval> tempListOrdreCheval = new ArrayList<>();
-        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
-            tempListOrdreCheval.add(classe.getOrdreDePassage().get(i).getCheval());
-        }
-        return tempListOrdreCheval;
-    }
-
-    public List<Cheval> getOrdreListChevalBaril(int classeId, int equipeId) {
-        Baril classe = barilRepository.findById(classeId);
-        List<Cheval> tempListOrdreCheval = new ArrayList<>();
-        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
-            tempListOrdreCheval.add(classe.getOrdreDePassage().get(i).getCheval());
-        }
-        return tempListOrdreCheval;
-    }
-
     public List<Cheval> getOrdreListChevalTour(int classeId, int equipeId) {
         Tour classe = tourRepository.findById(classeId);
         List<Cheval> tempListOrdreCheval = new ArrayList<>();
@@ -299,89 +227,26 @@ public class ClasseService {
         return tempListOrdreCheval;
     }
 
-    public List<Participant> getResultatListParticipantAllerRetour(int classeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<Participant> tempListResultatParticipant = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatParticipant.add(equipe.getParticipant());
-        }
-        return tempListResultatParticipant;
-    }
-
-    public List<Participant> getResultatListParticipantBaril(int classeId) {
-        Baril classe = barilRepository.findById(classeId);
-        List<Participant> tempListResultatParticipant = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatParticipant.add(equipe.getParticipant());
-        }
-        return tempListResultatParticipant;
-    }
-
-    public List<Participant> getResultatListParticipantTour(int classeId) {
-        Tour classe = tourRepository.findById(classeId);
-        List<Participant> tempListResultatParticipant = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatParticipant.add(equipe.getParticipant());
-        }
-        return tempListResultatParticipant;
-    }
-
-    public List<Cheval> getResultatListChevalAllerRetour(int classeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<Cheval> tempListResultatCheval = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatCheval.add(equipe.getCheval());
-        }
-        return tempListResultatCheval;
-    }
-
-    public List<Cheval> getResultatListChevalBaril(int classeId) {
-        Baril classe = barilRepository.findById(classeId);
-        List<Cheval> tempListResultatCheval = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatCheval.add(equipe.getCheval());
-        }
-        return tempListResultatCheval;
-    }
-
-    public List<Cheval> getResultatListChevalTour(int classeId) {
-        Tour classe = tourRepository.findById(classeId);
-        List<Cheval> tempListResultatCheval = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatCheval.add(equipe.getCheval());
-        }
-        return tempListResultatCheval;
-    }
-
-    public List<String> getResultatListTempsAllerRetour(int classeId) {
-        AllerRetour classe = allerRetourRepository.findById(classeId);
-        List<String> tempListResultatTemps = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatTemps.add(equipe.getTemps());
-        }
-        return tempListResultatTemps;
-    }
-
-    public List<String> getResultatListTempsBaril(int classeId) {
-        Baril classe = barilRepository.findById(classeId);
-        List<String> tempListResultatTemps = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatTemps.add(equipe.getTemps());
-        }
-        return tempListResultatTemps;
-    }
-
-    public List<String> getResultatListTempsTour(int classeId) {
-        Tour classe = tourRepository.findById(classeId);
-        List<String> tempListResultatTemps = new ArrayList<>();
-        for (Equipe equipe : classe.getClassement()) {
-            tempListResultatTemps.add(equipe.getTemps());
-        }
-        return tempListResultatTemps;
-    }
-
     public List<EquipeAfficher> getResultatListAllerRetour(int classeId) {
         AllerRetour classe = allerRetourRepository.findById(classeId);
+        List<EquipeAfficher> tempListResultat = new ArrayList<>();
+        for (Equipe equipe : classe.getClassement()) {
+            tempListResultat.add(new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps()));
+        }
+        return tempListResultat;
+    }
+
+    public List<EquipeAfficher> getResultatListBaril(int classeId) {
+        Baril classe = barilRepository.findById(classeId);
+        List<EquipeAfficher> tempListResultat = new ArrayList<>();
+        for (Equipe equipe : classe.getClassement()) {
+            tempListResultat.add(new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps()));
+        }
+        return tempListResultat;
+    }
+
+    public List<EquipeAfficher> getResultatListTour(int classeId) {
+        Tour classe = tourRepository.findById(classeId);
         List<EquipeAfficher> tempListResultat = new ArrayList<>();
         for (Equipe equipe : classe.getClassement()) {
             tempListResultat.add(new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps()));
@@ -398,8 +263,38 @@ public class ClasseService {
         return tempListOrdre;
     }
 
+    public List<EquipeAfficher> getOrdreListBaril(int classeId, int equipeId) {
+        Baril classe = barilRepository.findById(classeId);
+        List<EquipeAfficher> tempListOrdre = new ArrayList<>();
+        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
+            tempListOrdre.add(new EquipeAfficher(classe.getOrdreDePassage().get(i).getId(), classe.getOrdreDePassage().get(i).getParticipant().getPrenom(), classe.getOrdreDePassage().get(i).getParticipant().getNom(), classe.getOrdreDePassage().get(i).getCheval().getNom(), classe.getOrdreDePassage().get(i).getTemps()));
+        }
+        return tempListOrdre;
+    }
+
+    public List<EquipeAfficher> getOrdreListTour(int classeId, int equipeId) {
+        Tour classe = tourRepository.findById(classeId);
+        List<EquipeAfficher> tempListOrdre = new ArrayList<>();
+        for (int i = equipeId + 1; i < classe.getOrdreDePassage().size(); i++) {
+            tempListOrdre.add(new EquipeAfficher(classe.getOrdreDePassage().get(i).getId(), classe.getOrdreDePassage().get(i).getParticipant().getPrenom(), classe.getOrdreDePassage().get(i).getParticipant().getNom(), classe.getOrdreDePassage().get(i).getCheval().getNom(), classe.getOrdreDePassage().get(i).getTemps()));
+        }
+        return tempListOrdre;
+    }
+
     public EquipeAfficher getEquipeActuelAllerRetour(int classeId, int equipeId) {
         AllerRetour classe = allerRetourRepository.findById(classeId);
+        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
+        return new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps());
+    }
+
+    public EquipeAfficher getEquipeActuelBaril(int classeId, int equipeId) {
+        Baril classe = barilRepository.findById(classeId);
+        Equipe equipe = classe.getOrdreDePassage().get(equipeId);
+        return new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps());
+    }
+
+    public EquipeAfficher getEquipeActuelTour(int classeId, int equipeId) {
+        Tour classe = tourRepository.findById(classeId);
         Equipe equipe = classe.getOrdreDePassage().get(equipeId);
         return new EquipeAfficher(equipe.getId(), equipe.getParticipant().getPrenom(), equipe.getParticipant().getNom(), equipe.getCheval().getNom(), equipe.getTemps());
     }
