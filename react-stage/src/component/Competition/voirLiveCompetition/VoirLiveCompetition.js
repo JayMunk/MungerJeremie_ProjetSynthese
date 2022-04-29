@@ -8,17 +8,12 @@ import ClasseService from '../../../services/ClasseService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const VoirLiveCompetition = () => {
-    const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
-    const [equipeActuelParticipant, setEquipeActuelParticipant] = useState({})
-    const [equipeActuelCheval, setEquipeActuelCheval] = useState({})
-    const [equipeActuelTemps, setEquipeActuelTemps] = useState({})
-    const [ordreListParticipant, setOrdreListParticipant] = useState([])
-    const [ordreListCheval, setOrdreListCheval] = useState([])
-    const [resultatListParticipant, setResultatListParticipant] = useState([])
-    const [resultatListCheval, setResultatListCheval] = useState([])
-    const [resultatListTemps, setResultatListTemps] = useState([])
+    const [loggedUser] = useContext(UserInfoContext)
     const [resultatList, setResultatList] = useState([])
     const [ordreList, setOrdreList] = useState([])
+    const [classeId, setClasseId] = useState('')
+    const [classeType, setClasseType] = useState('')
+    const [equipeActuelId, setEquipeActuelId] = useState('')
     const [equipeActuel, setEquipeActuel] = useState([])
 
     //What i need
@@ -40,10 +35,15 @@ const VoirLiveCompetition = () => {
     //avec classeId je vais chercher l'ordre participant (id, prenom, nom)
     //avec classeId je vais chercher l'ordre cheval (id, nom)
 
+    useEffect(async () => {
+        await getEquipeActuelId(classeId, classeType)
+        await getResultats(classeId, classeType)
+    }, [classeId, classeType])
 
-    const [classeId, setClasseId] = useState('');
-    const [classeType, setClasseType] = useState('');
-    const [equipeActuelId, setEquipeActuelId] = useState('');
+    useEffect(async () => {
+        await getEquipeActuel(classeId, classeType, equipeActuelId)
+        await getOrdre(classeId, classeType, equipeActuelId)
+    }, [equipeActuelId])
 
     const formToParent = (classeId, classeType) => {
         //console.log(classeId, "classeId")
@@ -51,6 +51,7 @@ const VoirLiveCompetition = () => {
         //console.log(classeType, "classeType")
         setClasseType(classeType);
     }
+
     const pushTime = (time) => {
         //console.log(time, "time")
         //console.log(("0" + Math.floor((time / 1000) % 60)).slice(-2), "time sec")
@@ -58,11 +59,6 @@ const VoirLiveCompetition = () => {
         setEquipeActuelTemps(time);
         //post?
     }
-
-    useEffect(async () => {
-        await getEquipeActuelId(classeId, classeType)
-        await getResultats(classeId, classeType)
-    }, [classeId, classeType])
 
     const getEquipeActuelId = async (classeId, classeType) => {
         if (classeType == "AllerRetour") {
@@ -83,11 +79,6 @@ const VoirLiveCompetition = () => {
             setResultatList(await ClasseService.getResultatListTour(classeId))
         }
     }
-
-    useEffect(async () => {
-        await getEquipeActuel(classeId, classeType, equipeActuelId)
-        await getOrdre(classeId, classeType, equipeActuelId)
-    }, [equipeActuelId])
 
     const getOrdre = async (classeId, classeType, equipeActuelId) => {
         if (classeType == "AllerRetour") {
