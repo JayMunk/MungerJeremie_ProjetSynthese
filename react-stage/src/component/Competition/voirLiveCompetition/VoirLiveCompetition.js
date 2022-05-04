@@ -15,25 +15,7 @@ const VoirLiveCompetition = () => {
     const [classeType, setClasseType] = useState('')
     const [equipeActuelId, setEquipeActuelId] = useState('')
     const [equipeActuel, setEquipeActuel] = useState([])
-
-    //What i need
-    //FORM
-    //form me retourne la classeId
-    //form me retourne le type de classe
-    //EQUIPE ACTUEL
-    //avec classeId je vais chercher l'id de l'equipe actuel
-    //avec equipeId je vais chercher l'equipe actuel participant (id, prenom, nom)
-    //avec equipeId je vais chercher l'equipe actuel cheval (id, nom)
-    //CHRONOMETRE
-    //me retourne le temps
-    //POST
-    //RESULTAT
-    //avec classeId je vais chercher les resultats des participant (id, prenom, nom)
-    //avec classeId je vais chercher les resultats des cheval (id, nom)
-    //avec classeId je vais chercher les temps de l'equipe (temps)
-    //ORDRE
-    //avec classeId je vais chercher l'ordre participant (id, prenom, nom)
-    //avec classeId je vais chercher l'ordre cheval (id, nom)
+    const [equipeActuelTemps, setEquipeActuelTemps] = useState([])
 
     useEffect(async () => {
         await getEquipeActuelId(classeId, classeType)
