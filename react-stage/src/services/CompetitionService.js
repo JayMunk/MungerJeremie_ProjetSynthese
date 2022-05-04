@@ -11,7 +11,6 @@ const CompetitionService = {
                 body: JSON.stringify(values)
             })
         const data = await res.json()
-        console.log(data, "data")
         return data
     },
 
@@ -24,21 +23,18 @@ const CompetitionService = {
     getCompetitionsByDateWeek: async (dateDebut) => {
         const res = await fetch(urlBase + "/competitionsByDateWeek/" + dateDebut)
         const data = await res.json()
-        console.log(data, "data")
         return data
     },
 
     getCompetitionsByDateMonth: async (dateDebut) => {
         const res = await fetch(urlBase + "/competitionsByDateMonth/" + dateDebut)
         const data = await res.json()
-        console.log(data, "data")
         return data
     },
 
     getCompetitionsByDateYear: async (dateDebut) => {
         const res = await fetch(urlBase + "/competitionsByDateYear/" + dateDebut)
         const data = await res.json()
-        console.log(data, "data")
         return data
     }
 }

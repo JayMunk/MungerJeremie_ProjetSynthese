@@ -5,7 +5,7 @@ import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const CreateCompetition = () => {
     const history = useHistory()
-    const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
+    const [loggedUser] = useContext(UserInfoContext)
     const [values, setValues] = useState({
         nom: "",
         date: "",
@@ -44,16 +44,12 @@ const CreateCompetition = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values, "Competition Values: ")
         setErrors(checkError(values))
 
         setSubmitted(true)
         if (Object.keys(checkError(values)).length === 0 || Object.keys(checkError(values)).length === undefined && submitted) {
-
-
             await CompetitionService.saveCompetition(values, loggedUser.courriel)
             history.push("/afficherCompetitionOrganisation")
-
         }
     }
 

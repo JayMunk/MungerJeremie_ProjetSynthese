@@ -1,5 +1,5 @@
 import { React, useState, useContext, useEffect } from 'react'
-import { useHistory, withRouter } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import CompetitionService from '../../../services/CompetitionService'
 import { UserInfoContext } from '../../../contexts/UserInfo'
 import Table from "react-bootstrap/Table"
@@ -39,22 +39,16 @@ const AfficherCompetitionOrganisation = () => {
 
     const getCompetitions = async () => {
         let dbCompetitions = await CompetitionService.getOrganisationCompetitions(loggedUser.courriel)
-        console.log(dbCompetitions, "dbCompetitions")
         setListCompetitions(dbCompetitions)
     }
 
     const onClickClasse = (classe, typeClasse, competitionId) => {
-        console.log("CurrentClasse", classe)
         setCurrentClasse(classe)
         setClasseType(typeClasse)
-        console.log("typeClasse", typeClasse)
         setCurrentCompetitionId(competitionId)
-        console.log("CurrentCompetitionId", competitionId)
         if (classe != null) {
             if (classe.inscriptionList.length > 1) {
                 setInscriptionList(classe.inscriptionList)
-                console.log("length", classe.inscriptionList.length)
-                console.log("participant", classe.inscriptionList[0].participant)
                 let listeParticpant = []
                 for (var i = 0; i < classe.inscriptionList.length; i++) {
                     listeParticpant = [...listeParticpant, classe.inscriptionList[i].participant]
@@ -104,7 +98,6 @@ const AfficherCompetitionOrganisation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values, "Classe Values: ")
         setErrors(checkError(values))
 
         setSubmitted(true)

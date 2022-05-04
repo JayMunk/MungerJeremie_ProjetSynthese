@@ -2,7 +2,7 @@ const urlBase = 'http://localhost:9191/cheval'
 
 const ChevalService = {
     saveCheval: async (values, courriel) => {
-        const res = await fetch(urlBase +'/' + courriel,
+        const res = await fetch(urlBase + '/' + courriel,
             {
                 method: 'POST',
                 headers: {
@@ -11,10 +11,9 @@ const ChevalService = {
                 body: JSON.stringify(values)
             })
         const data = await res.json()
-        console.log(data,"data")
         return data
     },
-    
+
     getHorsesByOwnerEmail: async (ownerCourriel) => {
         const res = await fetch(urlBase + "/horses/" + ownerCourriel)
         const data = await res.json()

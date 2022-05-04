@@ -3,18 +3,13 @@ import { useHistory } from "react-router-dom"
 import { UserInfoContext } from "../../contexts/UserInfo"
 import { Link } from 'react-router-dom'
 
-
-
 const LoginUser = () => {
 
     const history = useHistory()
     const [values, setValues] = useState({
-
         courriel: "",
         password: "",
-
     })
-
 
     const firstUpdate = useRef(true)
     const loginValid = useRef(false)
@@ -24,7 +19,6 @@ const LoginUser = () => {
 
 
     const handleChange = e => {
-
 
         const { name, value } = e.target
         setValues({
@@ -66,8 +60,7 @@ const LoginUser = () => {
             if (Object.keys(errors).length === 0 && isSubmitted) {
                 fetch(`http://localhost:9191/user/${values.courriel}/${values.password}`)
                     .then(res => {
-                        console.log(res, "resultat res")
-
+                        
                         if (res.ok) {
                             loginValid.current = true
                             return res.json()

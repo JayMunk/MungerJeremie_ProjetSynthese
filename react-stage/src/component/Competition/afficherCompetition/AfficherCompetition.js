@@ -1,25 +1,15 @@
-import { React, useState, useContext, useEffect } from 'react'
-import { useHistory, withRouter } from "react-router-dom"
+import { React, useState, useEffect } from 'react'
 import CompetitionService from '../../../services/CompetitionService'
-import { UserInfoContext } from '../../../contexts/UserInfo'
 import Table from 'react-bootstrap/Table'
-import { Link } from 'react-router-dom'
-import ReactModal from 'react-modal'
-import { AiOutlineClose } from 'react-icons/ai'
-import ChevalService from '../../../services/ChevalService'
 
 const AfficherCompetition = () => {
-    const history = useHistory()
-    const [loggedUser] = useContext(UserInfoContext)
     const [listCompetitions, setListCompetitions] = useState([])
 
     useEffect(() => {
         const getCompetitions = async () => {
             var today = new Date()
             var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate() + 1)).slice(-2)
-            console.log(dateDebut, "date")
             let dbCompetitions = await CompetitionService.getCompetitionsByDateYear(dateDebut)
-            console.log(dbCompetitions, "dbCompetitions")
             setListCompetitions(dbCompetitions)
         }
         getCompetitions()

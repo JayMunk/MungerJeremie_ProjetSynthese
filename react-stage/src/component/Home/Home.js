@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { UserInfoContext } from '../../contexts/UserInfo'
 import './Home.css'
 import SlideShow from './slideShow/SlideShow'

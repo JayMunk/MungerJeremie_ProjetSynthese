@@ -8,9 +8,7 @@ import { UserInfoContext } from '../../contexts/UserInfo'
 
 
 const NavbarHTML = () => {
-  const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
-
-  console.log(loggedUser, "loggedUser")
+  const [loggedUser] = useContext(UserInfoContext)
 
 
   return (

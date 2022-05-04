@@ -65,7 +65,6 @@ const CreateParticipant = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values, "User Values: ")
         setErrors(checkError(values))
 
         setSubmitted(true)

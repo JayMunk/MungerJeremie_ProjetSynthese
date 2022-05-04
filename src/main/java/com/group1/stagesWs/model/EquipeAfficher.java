@@ -1,11 +1,8 @@
 package com.group1.stagesWs.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.Data;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Duration;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class EquipeAfficher implements Serializable {

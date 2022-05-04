@@ -3,11 +3,12 @@ import { React, useEffect, useState } from 'react'
 const Chronometre = ({ pushTime }) => {
   const [time, setTime] = useState(0)
   const [running, setRunning] = useState(false)
+
   useEffect(() => {
     let interval
     if (running) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
+        setTime((prevTime) => prevTime + 10)
       }, 10)
     } else if (!running) {
       clearInterval(interval)
@@ -15,7 +16,7 @@ const Chronometre = ({ pushTime }) => {
     return () => clearInterval(interval)
   }, [running])
 
-  const enregistrer=()=>{
+  const enregistrer = () => {
     pushTime(time)
     setTime(0)
   }
