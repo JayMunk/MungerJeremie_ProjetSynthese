@@ -5,7 +5,6 @@ const OrdreDePassage = (props) => {
     const [ordreList, setOrdreList] = useState([])
 
     useEffect(() => {
-        console.log(props.ordreList, "props.ordreList")
         setOrdreList(props.ordreList)
     }, [])
 

@@ -8,7 +8,6 @@ import ReactModal from "react-modal"
 import { AiOutlineClose } from "react-icons/ai"
 import ClasseService from '../../services/ClasseService'
 import ChevalService from '../../services/ChevalService'
-import { SelectPanel } from 'react-multi-select-component'
 
 const Sinscrire = () => {
     const history = useHistory()
@@ -16,19 +15,14 @@ const Sinscrire = () => {
     const [listCompetitions, setListCompetitions] = useState([])
     const [currentClasse, setCurrentClasse] = useState({})
     const [showModal, setShowModal] = useState(false)
-    const [errors, setErrors] = useState(0)
-    const [submitted, setSubmitted] = useState(false)
     const [classeType, setClasseType] = useState({})
-    const [currentCompetitionId, setCurrentCompetitionId] = useState({})
     const [listHorses, setListHorses] = useState([])
     const [horseId, setHorseId] = useState({})
 
     useEffect(() => {
         const getHorses = async () => {
             let dbHorses = await ChevalService.getHorsesByOwnerEmail(loggedUser.courriel)
-            console.log(dbHorses, "dbHorses")
             setHorseId(dbHorses[0].id)
-            //horseId=dbHorses[0].id
             setListHorses(dbHorses)
         }
         getHorses()
@@ -38,19 +32,13 @@ const Sinscrire = () => {
     const getCompetitions = async () => {
         var today = new Date()
         var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + today.getDate()
-        console.log(dateDebut, "date")
         let dbCompetitions = await CompetitionService.getCompetitionsByDateYear(dateDebut)
-        console.log(dbCompetitions, "dbCompetitions")
         setListCompetitions(dbCompetitions)
     }
 
     const onClickClasse = (classe, typeClasse, competitionId) => {
-        console.log("CurrentClasse", classe)
         setCurrentClasse(classe)
         setClasseType(typeClasse)
-        console.log("typeClasse", typeClasse)
-        setCurrentCompetitionId(competitionId)
-        console.log("CurrentCompetitionId", competitionId)
 
         setShowModal(true)
     }
@@ -62,15 +50,12 @@ const Sinscrire = () => {
 
     const onChangeHorse = (e) => {
         let horse = JSON.parse(e.target.value)
-        console.log("onChangeHorse", horse)
         setHorseId(horse.id)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("horseId", horseId)
 
-        setSubmitted(true)
         if (classeType == "AllerRetour") {
             await ClasseService.sinscrireAllerRetour(horseId, loggedUser.courriel, currentClasse.id)
         } else if (classeType == "Baril") {

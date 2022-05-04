@@ -10,5 +10,6 @@ import java.util.List;
 public interface ChevalRepository extends JpaRepository<Cheval, Integer> {
 
     Cheval findById(int id);
+
     List<Cheval> findAllByOwnerCourriel(String courriel);
 }

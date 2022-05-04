@@ -9,9 +9,7 @@ const AfficherCompetitionThisWeek = () => {
         const getCompetitions = async () => {
             var today = new Date()
             var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate() + 1)).slice(-2)
-            console.log(dateDebut, "date")
             let dbCompetitions = await CompetitionService.getCompetitionsByDateWeek(dateDebut)
-            console.log(dbCompetitions, "dbCompetitions")
             setListCompetitions(dbCompetitions)
         }
         getCompetitions()

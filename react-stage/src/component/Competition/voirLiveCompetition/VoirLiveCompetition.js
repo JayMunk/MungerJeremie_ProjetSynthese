@@ -28,17 +28,15 @@ const VoirLiveCompetition = () => {
     }, [equipeActuelId])
 
     const formToParent = (classeId, classeType) => {
-        //console.log(classeId, "classeId")
-        setClasseId(classeId);
-        //console.log(classeType, "classeType")
-        setClasseType(classeType);
+        setClasseId(classeId)
+        setClasseType(classeType)
     }
 
     const pushTime = (time) => {
         //console.log(time, "time")
         //console.log(("0" + Math.floor((time / 1000) % 60)).slice(-2), "time sec")
         //console.log(("0" + ((time / 10) % 100)).slice(-2), "time milsec")
-        setEquipeActuelTemps(time);
+        setEquipeActuelTemps(time)
         //post?
     }
 

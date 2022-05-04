@@ -1,19 +1,16 @@
 import { React, useState, useEffect } from 'react'
-import ClasseService from '../../../services/ClasseService'
 import CompetitionService from '../../../services/CompetitionService'
 
 const ChoisirCompetitionClasse = ({ formToParent }) => {
     const [listCompetitions, setListCompetitions] = useState([])
-    const [values, setValues] = useState({})
+    const [values] = useState({})
     const [errors, setErrors] = useState({})
 
     useEffect(() => {
         const getCompetitions = async () => {
             var today = new Date()
             var dateDebut = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate() + 1)).slice(-2)
-            //console.log(dateDebut, "date")
             let dbCompetitions = await CompetitionService.getCompetitionsByDateYear(dateDebut)
-            //console.log(dbCompetitions, "dbCompetitions")
             setListCompetitions(dbCompetitions)
             values.competition = dbCompetitions[0]
             values.classe = "AllerRetour"
@@ -43,8 +40,6 @@ const ChoisirCompetitionClasse = ({ formToParent }) => {
     const handleSubmit = e => {
         e.preventDefault()
         setErrors(checkError(values))
-        //console.log("values", values)
-        //console.log("values2", values.competition.allerRetour.id.toString())
         if (Object.keys(checkError(values)).length === 0) {
             if (values.classe == "AllerRetour") {
                 formToParent(values.competition.allerRetour.id.toString(), values.classe)
@@ -70,7 +65,7 @@ const ChoisirCompetitionClasse = ({ formToParent }) => {
 
         return errors
     }
-    const data = "This is data from Child Component to the Parent Component."
+
     return (
         <div>
             <form className="formInscription" onSubmit={handleSubmit}>

@@ -8,7 +8,7 @@ import ReactModal from "react-modal"
 import { AiOutlineClose } from "react-icons/ai"
 
 const MyHorses = () => {
-    const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
+    const [loggedUser] = useContext(UserInfoContext)
     const [listHorses, setListHorses] = useState([])
     const [currentHorse, setCurrentHorse] = useState({})
     const [showModal, setShowModal] = useState(false)
@@ -16,7 +16,6 @@ const MyHorses = () => {
     useEffect(() => {
         const getHorses = async () => {
             let dbHorses = await ChevalService.getHorsesByOwnerEmail(loggedUser.courriel)
-            //console.log(dbHorses, "dbHorses")
             setListHorses(dbHorses)
         }
         getHorses()
@@ -31,7 +30,6 @@ const MyHorses = () => {
     }
 
     const onClickHorse = (horse) => {
-        //console.log("Currenthorse", horse)
         setCurrentHorse(horse)
         setShowModal(true)
     }

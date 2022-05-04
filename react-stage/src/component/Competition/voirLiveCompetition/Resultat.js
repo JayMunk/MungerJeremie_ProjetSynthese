@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table'
 
-
 const Resultat = (props) => {
     const [resultatList, setResultatList] = useState([])
     useEffect(() => {

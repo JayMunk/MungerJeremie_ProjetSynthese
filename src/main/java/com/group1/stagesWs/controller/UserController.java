@@ -2,8 +2,6 @@ package com.group1.stagesWs.controller;
 
 import com.group1.stagesWs.model.User;
 import com.group1.stagesWs.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user")
 public class UserController {
-    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
 
@@ -20,7 +17,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // login
     @GetMapping("/{email}/{password}")
     public ResponseEntity<User> login(
             @PathVariable("email") String email, @PathVariable("password") String password) {

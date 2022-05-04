@@ -45,7 +45,7 @@ const CreateOrganisation = () => {
         } else if (values.password2 !== values.password) {
             errors.password2 = "Les mots de passe de correspondent pas"
         }
-        
+
         if (!values.numTelephone) {
             errors.numTelephone = "Numero de telephone requis"
         }
@@ -56,7 +56,6 @@ const CreateOrganisation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values, "User Values: ")
         setErrors(checkError(values))
 
         setSubmitted(true)
@@ -73,7 +72,7 @@ const CreateOrganisation = () => {
         <body id="body">
             <h2>Créer un compte d'organisation</h2>
             <form onSubmit={handleSubmit} className="formInscription">
-                
+
                 <label>
                     Nom:
                 </label>

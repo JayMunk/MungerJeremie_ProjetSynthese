@@ -5,7 +5,7 @@ import { UserInfoContext } from '../../../contexts/UserInfo'
 
 const CreateCheval = () => {
     const history = useHistory()
-    const [loggedUser, setLoggedUser] = useContext(UserInfoContext)
+    const [loggedUser] = useContext(UserInfoContext)
     const [values, setValues] = useState({
         nom: "",
         sexe: "",
@@ -67,7 +67,6 @@ const CreateCheval = () => {
         e.preventDefault()
         values.vaccinated = vaccinated
         values.coggingTested = coggingTested
-        console.log(values, "Cheval Values: ")
         setErrors(checkError(values))
 
         setSubmitted(true)
@@ -79,9 +78,7 @@ const CreateCheval = () => {
     }
 
     const onChangeSexe = (e) => {
-        console.log(e, "e onChangeSexe")
         let sexe = JSON.parse(e.target.value)
-        console.log(sexe, "sexe onChangeSexe")
         values.sexe = sexe
     }
 
